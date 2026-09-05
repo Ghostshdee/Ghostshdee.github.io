@@ -1,0 +1,14 @@
+﻿# Дэд хавтас бүр нь ТУСДАА git repo — энд оруулахгүй
+dokay-portfolio/
+dokay-ai-service/
+dokay-journeys-onepager/
+urilga-hurim-batbayar-altantsetseg/
+urilga-sevleg-mongolhuu/
+urilga-ongodoo-zalah/
+
+# Локал ажлын тэмдэглэл (локал зам агуулдаг)
+NOTES.md
+
+Thumbs.db
+desktop.ini
+.DS_Store

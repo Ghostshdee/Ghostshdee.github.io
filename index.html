@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SEO / OPEN GRAPH
+     Facebook, Messenger зэрэг crawler JavaScript ажиллуулдаггүй тул
+     эдгээрийг CONFIG-оос үүсгэж БОЛОХГҮЙ. Гараар шинэчилнэ.
+     ═══════════════════════════════════════════════════════════════ -->
+<title>Dokay — Хийгдсэн ажлууд</title>
+<meta name="description" content="Жаргалсайхан Дөлгөөн (Dokay). Дархан хотоос AI автоматжуулалт, вэбсайт, цахим урилга бүтээдэг. Хийгдсэн ажлуудын жагсаалт.">
+<link rel="canonical" href="https://ghostshdee.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="mn_MN">
+<meta property="og:url" content="https://ghostshdee.github.io/">
+<meta property="og:title" content="Dokay — Хийгдсэн ажлууд">
+<meta property="og:description" content="AI автоматжуулалт, вэбсайт, цахим урилга. Дархан, Монгол.">
+<!-- ЗУРАГ ТАВИХ: 1200×630. Хар дэвсгэр, том condensed "DOKAY", шохой ногоон зурвас. -->
+<meta property="og:image" content="https://ghostshdee.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0A0A'/><text y='74' x='50' text-anchor='middle' font-size='70' font-family='Impact,sans-serif' fill='%23C6F24E'>D</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   Энэ хуудас бол Dokay-гийн нүүр хаалга. Тиймээс ГАДНЫ САН АШИГЛААГҮЙ —
+   Tailwind ч, GSAP ч байхгүй. Зөвхөн фонт л татагдана. Ингэснээр
+   утасны дата дээр агшин зуур нээгддэг.
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --void:#070707; --base:#0A0A0A; --panel:#111; --line:rgba(255,255,255,.09);
+  --bone:#EDEAE4; --mid:#A3A3A3; --dim:#6E6E6E;
+  --acid:#C6F24E;
+}
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+body{
+  background:var(--base); color:var(--bone);
+  font:400 16px/1.6 Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+a{ color:inherit; text-decoration:none }
+:focus-visible{ outline:2px solid var(--acid); outline-offset:3px; border-radius:4px }
+::selection{ background:var(--acid); color:var(--base) }
+
+.hd{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase; line-height:1 }
+.mn{ font-family:'JetBrains Mono',monospace }
+.label{
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--dim);
+}
+.wrap{ max-width:1180px; margin:0 auto; padding:0 20px }
+@media(min-width:768px){ .wrap{ padding:0 40px } }
+
+/* ── ТОР (дэвсгэрийн атмосфер) ── */
+.grid-bg{
+  position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%);
+}
+
+/* ── HERO ── */
+.hero{ position:relative; padding:96px 0 56px; overflow:hidden }
+@media(min-width:768px){ .hero{ padding:150px 0 90px } }
+.hero h1{
+  font-family:Oswald,sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(2.6rem,10.5vw,6.6rem); line-height:.92; letter-spacing:-.02em;
+  margin:22px 0 26px;
+}
+.hero h1 em{ font-style:normal; color:var(--acid) }
+.lede{ color:var(--mid); font-size:clamp(1rem,2.4vw,1.16rem); line-height:1.75; max-width:44ch }
+.dot{
+  display:inline-block; width:7px; height:7px; border-radius:50%;
+  background:var(--acid); margin-right:9px; vertical-align:middle;
+}
+
+/* ── ТООН БАРИМТ ── */
+.stats{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+  border-top:1px solid var(--line); margin-top:44px; padding-top:26px; max-width:600px;
+}
+.stats b{ font-family:Oswald,sans-serif; font-weight:700; font-size:clamp(1.5rem,5vw,2.1rem); display:block; line-height:1 }
+.stats span{ font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--dim); display:block; margin-top:8px; line-height:1.5 }
+
+/* ── АЖЛЫН КАРТ ── */
+.works{ padding:56px 0 20px }
+@media(min-width:768px){ .works{ padding:90px 0 30px } }
+.works-head{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:20px; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:34px;
+}
+.works-head h2{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
+  font-size:clamp(1.3rem,4vw,2rem); line-height:1 }
+
+.grid{ display:grid; gap:18px; grid-template-columns:1fr }
+@media(min-width:700px){ .grid{ grid-template-columns:repeat(2,1fr); gap:22px } }
+@media(min-width:1080px){ .grid{ grid-template-columns:repeat(3,1fr) } }
+
+.card{
+  position:relative; display:flex; flex-direction:column;
+  border:1px solid var(--line); background:var(--panel); border-radius:14px; overflow:hidden;
+  transition:border-color .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+}
+@media(hover:hover){
+  .card:hover{ transform:translateY(-4px); border-color:rgba(198,242,78,.4) }
+  .card:hover .thumb i{ transform:scale(1.08) }
+  .card:hover h3{ color:var(--acid) }
+}
+
+/* Урьдчилсан харагдац — жинхэнэ зураг биш, сайт бүрийн өнгөөр зурсан хийсвэр
+   дүрслэл. Хурдан ачаалагдана, ямар ч файл татахгүй.
+   БОДИТ ЗУРАГ ТАВИХ бол .thumb доторхыг <img> -ээр солино (16:10 харьцаа). */
+.thumb{ position:relative; aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid var(--line) }
+.thumb i{
+  position:absolute; inset:0; display:block;
+  transition:transform 1s cubic-bezier(.16,1,.3,1);
+}
+.thumb::after{
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:15px 15px;
+}
+.thumb b{
+  position:absolute; left:14px; top:13px; z-index:2;
+  font-family:'JetBrains Mono',monospace; font-size:.6rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--bone); background:rgba(7,7,7,.7); border:1px solid var(--line);
+  padding:5px 9px; border-radius:99px; backdrop-filter:blur(6px);
+}
+.thumb u{
+  position:absolute; right:14px; bottom:13px; z-index:2; text-decoration:none;
+  font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--dim);
+}
+
+.body{ padding:20px; display:flex; flex-direction:column; flex:1 }
+.card h3{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
+  font-size:1.16rem; line-height:1.15; margin-bottom:9px; transition:color .35s }
+.card p{ color:var(--mid); font-size:.88rem; line-height:1.68; margin-bottom:16px }
+.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px }
+.tags span{
+  font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--dim);
+  border:1px solid var(--line); padding:4px 8px; border-radius:5px;
+}
+.acts{ display:flex; gap:9px; margin-top:auto }
+.btn{
+  flex:1; text-align:center; font-family:Oswald,sans-serif; font-weight:600;
+  text-transform:uppercase; font-size:.78rem; letter-spacing:.09em;
+  padding:11px 8px; border-radius:9px; transition:background .3s,color .3s,border-color .3s;
+}
+.btn-a{ background:var(--acid); color:var(--base) }
+.btn-a:hover{ background:#d8ff62 }
+.btn-b{ border:1px solid var(--line); color:var(--mid) }
+.btn-b:hover{ border-color:var(--mid); color:var(--bone) }
+
+/* Бөглөөгүй талбартай ажлыг тэмдэглэнэ */
+.warn{
+  font-family:'JetBrains Mono',monospace; font-size:.62rem; line-height:1.5;
+  color:var(--acid); background:rgba(198,242,78,.07);
+  border:1px solid rgba(198,242,78,.2); border-radius:7px;
+  padding:8px 10px; margin-bottom:16px;
+}
+
+/* ── ХОЛБОО БАРИХ ── */
+.contact{ padding:70px 0 90px; border-top:1px solid var(--line); margin-top:60px }
+.contact h2{ font-family:Oswald,sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(1.8rem,6.5vw,3.4rem); line-height:1; margin:20px 0 30px }
+.contact h2 em{ font-style:normal; color:var(--acid) }
+.links{ display:flex; flex-wrap:wrap; gap:10px }
+.links a{
+  font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
+  font-size:.84rem; letter-spacing:.1em; padding:13px 24px;
+  border:1px solid var(--line); border-radius:99px; transition:all .3s;
+}
+.links a:first-child{ background:var(--acid); color:var(--base); border-color:var(--acid) }
+.links a:not(:first-child):hover{ border-color:var(--acid); color:var(--acid) }
+
+footer{ border-top:1px solid var(--line); padding:26px 0 34px }
+.foot{ display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--dim) }
+
+/* ── SCROLL REVEAL ── IntersectionObserver-оор, ямар ч сан ашиглахгүй ── */
+.rv{ opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1) }
+.rv.on{ opacity:1; transform:none }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ transition-duration:.001ms !important; animation-duration:.001ms !important }
+  .rv{ opacity:1 !important; transform:none !important }
+  html{ scroll-behavior:auto }
+}
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap }
+</style>
+</head>
+
+<body>
+<a href="#works" class="sr-only">Ажлууд руу очих</a>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <p class="label rv"><span class="dot"></span><span id="kicker"></span></p>
+    <h1 class="rv" id="h1"></h1>
+    <p class="lede rv" id="lede"></p>
+    <dl class="stats rv" id="stats"></dl>
+  </div>
+</header>
+
+<main id="works" class="works">
+  <div class="wrap">
+    <div class="works-head rv">
+      <h2 id="worksTitle"></h2>
+      <span class="label" id="worksCount"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<section class="contact">
+  <div class="wrap">
+    <p class="label rv" id="contactLabel"></p>
+    <h2 class="rv" id="contactTitle"></h2>
+    <div class="links rv" id="links"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span id="legal"></span>
+    <span id="place"></span>
+  </div>
+</footer>
+
+<noscript>
+  <div style="padding:40px 20px;max-width:700px">
+    <h2 style="font-family:Oswald,sans-serif">DOKAY — Хийгдсэн ажлууд</h2>
+    <ul style="margin-top:16px;line-height:2.2">
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-portfolio/">Хувийн portfolio</a></li>
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-ai-service/">Dokay AI Service</a></li>
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-journeys-onepager/">Dokay Journeys</a></li>
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/">Хуримын урилга</a></li>
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-sevleg-mongolhuu/">Сэвлэг үргээх урилга</a></li>
+      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-ongodoo-zalah/">Онгодоо залах урилга</a></li>
+    </ul>
+    <p style="margin-top:20px;color:#A3A3A3">Имэйл: dulguun.ah@gmail.com</p>
+  </div>
+</noscript>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   ██  CONFIG — ЭНЭ ХУУДСЫН БҮХ АГУУЛГА
+   ═══════════════════════════════════════════════════════════════════════
+   Шинэ ажил нэмэх бол `works` жагсаалтад нэг мөр нэмнэ. Өөр юу ч
+   өөрчлөх шаардлагагүй — тоо, дараалал бүгд автоматаар шинэчлэгдэнэ.
+
+   tone   → картын урьдчилсан харагдацын өнгө
+   live   → GitHub Pages дээрх амьд хаяг (хоосон бол товч гарахгүй)
+   code   → GitHub repo (хоосон бол товч гарахгүй)
+   note   → анхааруулга. Бөглөөгүй талбартай ажилд бичнэ.
+   ═══════════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+
+  me: {
+    kicker:  'Жаргалсайхан Дөлгөөн · Дархан, Монгол',
+    /* <em> дотор бичсэн үг шохой ногоон болно */
+    title:   'Хийгдсэн<br><em>ажлууд</em>',
+    lede:    'AI автоматжуулалт, вэбсайт, цахим урилга бүтээдэг. Доорх бүх ажил амьдаар ажиллаж байгаа — товшоод шууд үзээрэй.',
+    stats: [
+      { k:'6',       v:'Амьд ажиллаж буй сайт' },
+      { k:'3 хоног', v:'Дундаж хугацаа' },
+      { k:'2026',    v:'Сүүлд шинэчилсэн' }
+    ]
+  },
+
+  worksTitle: 'Ажлууд',
+
+  works: [
+    {
+      title: 'Dokay — Хувийн portfolio',
+      kind:  'Вэбсайт', year:'2026', tone:'lime',
+      desc:  'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
+      tech:  ['GSAP','ScrollTrigger','Lenis','Tailwind'],
+      live:  'https://ghostshdee.github.io/dokay-portfolio/',
+      code:  'https://github.com/Ghostshdee/dokay-portfolio',
+      note:  'Төслүүд нь жишээ өгөгдөл — бодит ажлаар солих'
+    },
+    {
+      title: 'Dokay AI Service',
+      kind:  'Вэбсайт', year:'2026', tone:'teal',
+      desc:  'Дарханы жижиг, дунд бизнест зориулсан үйлчилгээний сайт. 11 хэсэг, лид цуглуулах форм, багцын харьцуулалт.',
+      tech:  ['GSAP','Tailwind','Форм'],
+      live:  'https://ghostshdee.github.io/dokay-ai-service/',
+      code:  'https://github.com/Ghostshdee/dokay-ai-service',
+      note:  'Сэтгэгдэл, портфолио нь жишээ — солих шаардлагатай'
+    },
+    {
+      title: 'Dokay Journeys',
+      kind:  'Нэг хуудас', year:'2026', tone:'amber',
+      desc:  'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
+      tech:  ['HTML','CSS'],
+      live:  'https://ghostshdee.github.io/dokay-journeys-onepager/',
+      code:  'https://github.com/Ghostshdee/dokay-journeys-onepager',
+      note:  ''
+    },
+    {
+      title: 'Гэрлэх ёслолын хурим',
+      kind:  'Цахим урилга', year:'2026', tone:'rose',
+      desc:  'Батбаяр & Алтанцэцэг · 09.19 · Шангри-Ла. Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
+      tech:  ['GSAP','Tailwind','RSVP'],
+      live:  'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/',
+      code:  'https://github.com/Ghostshdee/urilga-hurim-batbayar-altantsetseg',
+      note:  'Цомгийн зураг нь stock — хосын жинхэнэ зургаар солих'
+    },
+    {
+      title: 'Сэвлэг үргээх ёслол',
+      kind:  'Цахим урилга', year:'2026', tone:'violet',
+      desc:  'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
+      tech:  ['GSAP','RSVP'],
+      live:  'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/',
+      code:  'https://github.com/Ghostshdee/urilga-sevleg-mongolhuu',
+      note:  ''
+    },
+    {
+      title: 'Гэр барих · Онгодоо залах',
+      kind:  'Цахим урилга', year:'2026', tone:'blue',
+      desc:  'Монгол гэрийн дүрслэл — тооно, унь, хараацай. Хаялга сөхөх хөдөлгөөнөөр нээгдэнэ.',
+      tech:  ['GSAP','SVG'],
+      live:  'https://ghostshdee.github.io/urilga-ongodoo-zalah/',
+      code:  'https://github.com/Ghostshdee/urilga-ongodoo-zalah',
+      note:  'Байршил, цаг, нэр бөглөөгүй'
+    }
+  ],
+
+  contact: {
+    label: 'Ажил ярих уу',
+    title: 'Дараагийн төслөө<br><em>эхлүүлэх үү?</em>',
+    links: [
+      { label:'Имэйл бичих', href:'mailto:dulguun.ah@gmail.com' },
+      { label:'Messenger',   href:'https://m.me/dokayaiservice' },
+      { label:'Facebook',    href:'https://facebook.com/dokayaiservice' },
+      { label:'GitHub',      href:'https://github.com/Ghostshdee' }
+    ]
+  },
+
+  footer: {
+    legal: '© ' + new Date().getFullYear() + ' Жаргалсайхан Дөлгөөн',
+    place: 'Дархан, Монгол'
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ██  ЗУРАХ
+   ═══════════════════════════════════════════════════════════════════════ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* Картын урьдчилсан харагдацын өнгө. Сайт бүр өөрийн аястай байснаар
+   жагсаалт нэг хэвийн харагдахгүй. */
+const TONE = {
+  lime:  'linear-gradient(145deg,#28331A,#0C0E0A 72%)',
+  teal:  'linear-gradient(145deg,#08302B,#090C0B 72%)',
+  amber: 'linear-gradient(145deg,#33240B,#0C0A07 72%)',
+  rose:  'linear-gradient(145deg,#340F1F,#0C0709 72%)',
+  violet:'linear-gradient(145deg,#251034,#0A070C 72%)',
+  blue:  'linear-gradient(145deg,#0A2440,#07090C 72%)'
+};
+
+/* Hero */
+$('#kicker').textContent = CONFIG.me.kicker;
+$('#h1').innerHTML       = CONFIG.me.title;
+$('#lede').textContent   = CONFIG.me.lede;
+$('#stats').innerHTML = CONFIG.me.stats.map(s => `
+  <div><dt class="sr-only">${esc(s.v)}</dt><dd><b>${esc(s.k)}</b><span>${esc(s.v)}</span></dd></div>`).join('');
+
+/* Ажлууд */
+$('#worksTitle').textContent = CONFIG.worksTitle;
+$('#worksCount').textContent = String(CONFIG.works.length).padStart(2,'0') + ' ажил';
+
+$('#grid').innerHTML = CONFIG.works.map(w => `
+  <article class="card rv">
+    <div class="thumb">
+      <i style="background:${TONE[w.tone] || TONE.lime}"></i>
+      <b>${esc(w.kind)}</b>
+      <u>${esc(w.year)}</u>
+    </div>
+    <div class="body">
+      <h3>${esc(w.title)}</h3>
+      <p>${esc(w.desc)}</p>
+      ${w.note ? `<p class="warn">${esc(w.note)}</p>` : ''}
+      <div class="tags">${w.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+      <div class="acts">
+        ${w.live ? `<a class="btn btn-a" href="${w.live}" target="_blank" rel="noopener">Үзэх</a>` : ''}
+        ${w.code ? `<a class="btn btn-b" href="${w.code}" target="_blank" rel="noopener">Код</a>` : ''}
+      </div>
+    </div>
+  </article>`).join('');
+
+/* Холбоо барих + футер */
+$('#contactLabel').textContent = CONFIG.contact.label;
+$('#contactTitle').innerHTML   = CONFIG.contact.title;
+$('#links').innerHTML = CONFIG.contact.links.map(l =>
+  `<a href="${l.href}" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`).join('');
+$('#legal').textContent = CONFIG.footer.legal;
+$('#place').textContent = CONFIG.footer.place;
+
+/* Бүтэцлэгдсэн өгөгдөл — Google-д ажлуудыг жагсаалт хэлбэрээр таниулна */
+(function(){
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify({
+    '@context':'https://schema.org','@type':'ItemList',
+    name:'Dokay — Хийгдсэн ажлууд',
+    itemListElement: CONFIG.works.map((w,i) => ({
+      '@type':'ListItem', position:i+1, url:w.live, name:w.title
+    }))
+  });
+  document.head.appendChild(s);
+})();
+
+/* ── SCROLL REVEAL ──
+   IntersectionObserver-оор. Гадны сан ашиглаагүй тул хуудас хөнгөн.
+   Дэмждэггүй хөтөч дээр бүх зүйл шууд харагдана. */
+(function(){
+  const els = document.querySelectorAll('.rv');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || reduce){
+    els.forEach(e => e.classList.add('on'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en, i) => {
+      if (!en.isIntersecting) return;
+      setTimeout(() => en.target.classList.add('on'), i * 70);
+      io.unobserve(en.target);
+    });
+  }, { rootMargin:'0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+
+  /* Аюулгүйн тор: 2 секундын дараа юу ч нуугдаагүй байх ёстой */
+  setTimeout(() => els.forEach(e => e.classList.add('on')), 2000);
+})();
+</script>
+</body>
+</html>
