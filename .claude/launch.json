@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "urilga",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "urilga-tengeriin-zaadas"],
+      "port": 8123
+    },
+    {
+      "name": "ger",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8124", "--directory", "urilga-ger-barih"],
+      "port": 8124
+    }
+  ]
+}
