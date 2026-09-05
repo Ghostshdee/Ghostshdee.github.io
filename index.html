@@ -114,7 +114,8 @@ a{ color:inherit; text-decoration:none }
 }
 @media(hover:hover){
   .card:hover{ transform:translateY(-4px); border-color:rgba(198,242,78,.4) }
-  .card:hover .thumb i{ transform:scale(1.08) }
+  .card:hover .thumb i,
+  .card:hover .thumb img{ transform:scale(1.08) }
   .card:hover h3{ color:var(--acid) }
 }
 
@@ -124,6 +125,12 @@ a{ color:inherit; text-decoration:none }
 .thumb{ position:relative; aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid var(--line) }
 .thumb i{
   position:absolute; inset:0; display:block;
+  transition:transform 1s cubic-bezier(.16,1,.3,1);
+}
+/* Бодит зураг тавихад: CONFIG.works[].img талбар бөглөнө */
+.thumb img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; display:block;
   transition:transform 1s cubic-bezier(.16,1,.3,1);
 }
 .thumb::after{
@@ -160,8 +167,6 @@ a{ color:inherit; text-decoration:none }
 }
 .btn-a{ background:var(--acid); color:var(--base) }
 .btn-a:hover{ background:#d8ff62 }
-.btn-b{ border:1px solid var(--line); color:var(--mid) }
-.btn-b:hover{ border-color:var(--mid); color:var(--bone) }
 
 /* Бөглөөгүй талбартай ажлыг тэмдэглэнэ */
 .warn{
@@ -249,7 +254,6 @@ footer{ border-top:1px solid var(--line); padding:26px 0 34px }
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-journeys-onepager/">Dokay Journeys</a></li>
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/">Хуримын урилга</a></li>
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-sevleg-mongolhuu/">Сэвлэг үргээх урилга</a></li>
-      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-ongodoo-zalah/">Онгодоо залах урилга</a></li>
     </ul>
     <p style="margin-top:20px;color:#A3A3A3">Имэйл: dulguun.ah@gmail.com</p>
   </div>
@@ -262,9 +266,10 @@ footer{ border-top:1px solid var(--line); padding:26px 0 34px }
    Шинэ ажил нэмэх бол `works` жагсаалтад нэг мөр нэмнэ. Өөр юу ч
    өөрчлөх шаардлагагүй — тоо, дараалал бүгд автоматаар шинэчлэгдэнэ.
 
-   tone   → картын урьдчилсан харагдацын өнгө
+   tone   → картын урьдчилсан харагдацын өнгө (img байхгүй үед)
+   img    → урьдчилсан харагдацын зураг, ж: 'assets/portfolio.jpg' (16:10 харьцаа).
+            Хоосон бол tone өнгөт дэвсгэр гарна.
    live   → GitHub Pages дээрх амьд хаяг (хоосон бол товч гарахгүй)
-   code   → GitHub repo (хоосон бол товч гарахгүй)
    note   → анхааруулга. Бөглөөгүй талбартай ажилд бичнэ.
    ═══════════════════════════════════════════════════════════════════════ */
 const CONFIG = {
@@ -275,7 +280,7 @@ const CONFIG = {
     title:   'Хийгдсэн<br><em>ажлууд</em>',
     lede:    'AI автоматжуулалт, вэбсайт, цахим урилга бүтээдэг. Доорх бүх ажил амьдаар ажиллаж байгаа — товшоод шууд үзээрэй.',
     stats: [
-      { k:'6',       v:'Амьд ажиллаж буй сайт' },
+      { k:'5',       v:'Амьд ажиллаж буй сайт' },
       { k:'3 хоног', v:'Дундаж хугацаа' },
       { k:'2026',    v:'Сүүлд шинэчилсэн' }
     ]
@@ -290,7 +295,6 @@ const CONFIG = {
       desc:  'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
       tech:  ['GSAP','ScrollTrigger','Lenis','Tailwind'],
       live:  'https://ghostshdee.github.io/dokay-portfolio/',
-      code:  'https://github.com/Ghostshdee/dokay-portfolio',
       note:  'Төслүүд нь жишээ өгөгдөл — бодит ажлаар солих'
     },
     {
@@ -299,7 +303,6 @@ const CONFIG = {
       desc:  'Дарханы жижиг, дунд бизнест зориулсан үйлчилгээний сайт. 11 хэсэг, лид цуглуулах форм, багцын харьцуулалт.',
       tech:  ['GSAP','Tailwind','Форм'],
       live:  'https://ghostshdee.github.io/dokay-ai-service/',
-      code:  'https://github.com/Ghostshdee/dokay-ai-service',
       note:  'Сэтгэгдэл, портфолио нь жишээ — солих шаардлагатай'
     },
     {
@@ -308,7 +311,6 @@ const CONFIG = {
       desc:  'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
       tech:  ['HTML','CSS'],
       live:  'https://ghostshdee.github.io/dokay-journeys-onepager/',
-      code:  'https://github.com/Ghostshdee/dokay-journeys-onepager',
       note:  ''
     },
     {
@@ -317,7 +319,6 @@ const CONFIG = {
       desc:  'Батбаяр & Алтанцэцэг · 09.19 · Шангри-Ла. Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
       tech:  ['GSAP','Tailwind','RSVP'],
       live:  'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/',
-      code:  'https://github.com/Ghostshdee/urilga-hurim-batbayar-altantsetseg',
       note:  'Цомгийн зураг нь stock — хосын жинхэнэ зургаар солих'
     },
     {
@@ -326,17 +327,7 @@ const CONFIG = {
       desc:  'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
       tech:  ['GSAP','RSVP'],
       live:  'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/',
-      code:  'https://github.com/Ghostshdee/urilga-sevleg-mongolhuu',
       note:  ''
-    },
-    {
-      title: 'Гэр барих · Онгодоо залах',
-      kind:  'Цахим урилга', year:'2026', tone:'blue',
-      desc:  'Монгол гэрийн дүрслэл — тооно, унь, хараацай. Хаялга сөхөх хөдөлгөөнөөр нээгдэнэ.',
-      tech:  ['GSAP','SVG'],
-      live:  'https://ghostshdee.github.io/urilga-ongodoo-zalah/',
-      code:  'https://github.com/Ghostshdee/urilga-ongodoo-zalah',
-      note:  'Байршил, цаг, нэр бөглөөгүй'
     }
   ],
 
@@ -346,8 +337,7 @@ const CONFIG = {
     links: [
       { label:'Имэйл бичих', href:'mailto:dulguun.ah@gmail.com' },
       { label:'Messenger',   href:'https://m.me/dokayaiservice' },
-      { label:'Facebook',    href:'https://facebook.com/dokayaiservice' },
-      { label:'GitHub',      href:'https://github.com/Ghostshdee' }
+      { label:'Facebook',    href:'https://facebook.com/dokayaiservice' }
     ]
   },
 
@@ -389,7 +379,9 @@ $('#worksCount').textContent = String(CONFIG.works.length).padStart(2,'0') + ' �
 $('#grid').innerHTML = CONFIG.works.map(w => `
   <article class="card rv">
     <div class="thumb">
-      <i style="background:${TONE[w.tone] || TONE.lime}"></i>
+      ${w.img
+        ? `<img src="${esc(w.img)}" alt="${esc(w.title)} — урьдчилсан харагдац" loading="lazy">`
+        : `<i style="background:${TONE[w.tone] || TONE.lime}"></i>`}
       <b>${esc(w.kind)}</b>
       <u>${esc(w.year)}</u>
     </div>
@@ -400,7 +392,6 @@ $('#grid').innerHTML = CONFIG.works.map(w => `
       <div class="tags">${w.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div>
       <div class="acts">
         ${w.live ? `<a class="btn btn-a" href="${w.live}" target="_blank" rel="noopener">Үзэх</a>` : ''}
-        ${w.code ? `<a class="btn btn-b" href="${w.code}" target="_blank" rel="noopener">Код</a>` : ''}
       </div>
     </div>
   </article>`).join('');
