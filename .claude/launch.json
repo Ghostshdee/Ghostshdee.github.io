@@ -2,16 +2,46 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "urilga",
+      "name": "нүүр",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "urilga-tengeriin-zaadas"],
+      "runtimeArgs": ["-m", "http.server", "8120", "--directory", "."],
+      "port": 8120
+    },
+    {
+      "name": "dokay-ai-service",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8121", "--directory", "dokay-ai-service"],
+      "port": 8121
+    },
+    {
+      "name": "dokay-portfolio",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8122", "--directory", "dokay-portfolio"],
+      "port": 8122
+    },
+    {
+      "name": "dokay-journeys-onepager",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "dokay-journeys-onepager"],
       "port": 8123
     },
     {
-      "name": "ger",
+      "name": "urilga-hurim",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8124", "--directory", "urilga-ger-barih"],
+      "runtimeArgs": ["-m", "http.server", "8124", "--directory", "urilga-hurim-batbayar-altantsetseg"],
       "port": 8124
+    },
+    {
+      "name": "urilga-ongodoo-zalah",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8125", "--directory", "urilga-ongodoo-zalah"],
+      "port": 8125
+    },
+    {
+      "name": "urilga-sevleg-mongolhuu",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8126", "--directory", "urilga-sevleg-mongolhuu"],
+      "port": 8126
     }
   ]
 }

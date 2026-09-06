@@ -5,446 +5,1622 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A0A0A">
 
-<!-- ═══════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════════════
      SEO / OPEN GRAPH
-     Facebook, Messenger зэрэг crawler JavaScript ажиллуулдаггүй тул
-     эдгээрийг CONFIG-оос үүсгэж БОЛОХГҮЙ. Гараар шинэчилнэ.
-     ═══════════════════════════════════════════════════════════════ -->
-<title>Dokay — Хийгдсэн ажлууд</title>
-<meta name="description" content="Жаргалсайхан Дөлгөөн (Dokay). Дархан хотоос AI автоматжуулалт, вэбсайт, цахим урилга бүтээдэг. Хийгдсэн ажлуудын жагсаалт.">
+     Facebook, Messenger зэрэг crawler JavaScript АЖИЛЛУУЛДАГГҮЙ тул эдгээрийг
+     CONFIG-оос үүсгэж болохгүй. Мэдээллээ солихдоо ЭНЭ БЛОК + доорх
+     CONFIG.seo хоёуланг зэрэг шинэчилнэ.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<title>Dokay — AI автоматжуулалт, вэб, контент, цахим урилга</title>
+<meta name="description" content="Жаргалсайхан Дөлгөөн (Dokay). Дархан хотоос AI автоматжуулалт, вэбсайт хөгжүүлэлт, AI контент, цахим урилга бүтээдэг. Ажил захиалах бол холбогдоорой.">
+<meta name="author" content="Жаргалсайхан Дөлгөөн">
+<meta name="keywords" content="AI автоматжуулалт, n8n, Make.com, вэбсайт хийлгэх, цахим урилга, Дархан, контент, Dokay">
 <link rel="canonical" href="https://ghostshdee.github.io/">
+
 <meta property="og:type" content="website">
 <meta property="og:locale" content="mn_MN">
+<meta property="og:site_name" content="Dokay">
 <meta property="og:url" content="https://ghostshdee.github.io/">
-<meta property="og:title" content="Dokay — Хийгдсэн ажлууд">
-<meta property="og:description" content="AI автоматжуулалт, вэбсайт, цахим урилга. Дархан, Монгол.">
-<!-- ЗУРАГ ТАВИХ: 1200×630. Хар дэвсгэр, том condensed "DOKAY", шохой ногоон зурвас. -->
+<meta property="og:title" content="Dokay — AI автоматжуулалт, вэб, контент, цахим урилга">
+<meta property="og:description" content="Дархан хотоос AI автоматжуулалт, вэбсайт, контент, цахим урилга. Ажил захиалах бол холбогдоорой.">
+<!-- TODO: assets/og.jpg (1200×630) — хар дэвсгэр, том condensed "DOKAY", шохой ногоон зурвас. -->
 <meta property="og:image" content="https://ghostshdee.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dokay — AI автоматжуулалт, вэб, контент, цахим урилга">
+<meta name="twitter:description" content="Дархан хотоос AI автоматжуулалт, вэбсайт, контент, цахим урилга.">
+<meta name="twitter:image" content="https://ghostshdee.github.io/assets/og.jpg">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0A0A'/><text y='74' x='50' text-anchor='middle' font-size='70' font-family='Impact,sans-serif' fill='%23C6F24E'>D</text></svg>">
 
+<!-- ФОНТ
+     Oswald    → хэсгийн гарчиг, нав, шошго (condensed, кирилл бүрэн)
+     Roboto Flex → HERO-гийн аварга гарчиг (wdth тэнхлэгээр хэт шахна)
+     Inter     → үндсэн текст
+     JetBrains Mono → JSON блок, тоо, техник шошго -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Flex:wdth,wght@62,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        void:   '#070707',
+        base:   '#0A0A0A',
+        panel:  '#101010',
+        raised: '#161616',
+        line:   'rgba(255,255,255,0.08)',
+        bone:   '#EDEAE4',   // үндсэн текст — цэвэр цагаан биш, зөөлөн
+        mid:    '#A3A3A3',
+        dim:    '#838383',
+        acid:   '#C6F24E'    // ГАНЦ accent
+      },
+      fontFamily: {
+        mega: ['"Roboto Flex"','Oswald','Impact','sans-serif'],
+        head: ['Oswald','"Roboto Flex"','sans-serif'],
+        body: ['Inter','system-ui','sans-serif'],
+        mono: ['"JetBrains Mono"','ui-monospace','monospace']
+      },
+      maxWidth: { shell: '1440px' }
+    }
+  }
+}
+</script>
 
 <style>
 /* ═══════════════════════════════════════════════════════════════════
-   Энэ хуудас бол Dokay-гийн нүүр хаалга. Тиймээс ГАДНЫ САН АШИГЛААГҮЙ —
-   Tailwind ч, GSAP ч байхгүй. Зөвхөн фонт л татагдана. Ингэснээр
-   утасны дата дээр агшин зуур нээгддэг.
+   ГАРААР БИЧСЭН CSS
    ═══════════════════════════════════════════════════════════════════ */
 :root{
-  --void:#070707; --base:#0A0A0A; --panel:#111; --line:rgba(255,255,255,.09);
-  --bone:#EDEAE4; --mid:#A3A3A3; --dim:#6E6E6E;
   --acid:#C6F24E;
+  --acid-dim:rgba(198,242,78,.16);
+  --acid-soft:rgba(198,242,78,.13);
+  --acid-line:rgba(198,242,78,.28);
 }
-*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent }
-html{ scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+
+*{ -webkit-tap-highlight-color:transparent }
+html{ background:#0A0A0A; -webkit-text-size-adjust:100% }
 body{
-  background:var(--base); color:var(--bone);
-  font:400 16px/1.6 Inter,system-ui,sans-serif;
+  background:#0A0A0A; color:#EDEAE4;
+  font-family:'Inter',system-ui,sans-serif;
   overflow-x:hidden;
 }
-a{ color:inherit; text-decoration:none }
-:focus-visible{ outline:2px solid var(--acid); outline-offset:3px; border-radius:4px }
-::selection{ background:var(--acid); color:var(--base) }
+html.lenis{ scroll-behavior:auto }
+html:not(.lenis){ scroll-behavior:smooth }
+.lenis.lenis-smooth [data-lenis-prevent]{ overscroll-behavior:contain }
 
-.hd{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase; line-height:1 }
+:focus-visible{ outline:2px solid var(--acid); outline-offset:4px }
+::selection{ background:var(--acid); color:#0A0A0A }
+::-webkit-scrollbar{ width:9px }
+::-webkit-scrollbar-track{ background:#070707 }
+::-webkit-scrollbar-thumb{ background:#242424 }
+::-webkit-scrollbar-thumb:hover{ background:#3a3a3a }
+
+/* ── ТИПОГРАФИ ────────────────────────────────────────────────────── */
+.mega{
+  font-family:'Roboto Flex','Oswald',Impact,sans-serif;
+  font-variation-settings:'wdth' 62,'wght' 900;
+  font-weight:900;
+  letter-spacing:-.015em; line-height:.82;
+  text-transform:uppercase;
+}
+.hd{ font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.01em; line-height:1 }
 .mn{ font-family:'JetBrains Mono',monospace }
 .label{
-  font-family:'JetBrains Mono',monospace; font-size:.68rem;
-  letter-spacing:.24em; text-transform:uppercase; color:var(--dim);
-}
-.wrap{ max-width:1180px; margin:0 auto; padding:0 20px }
-@media(min-width:768px){ .wrap{ padding:0 40px } }
-
-/* ── ТОР (дэвсгэрийн атмосфер) ── */
-.grid-bg{
-  position:absolute; inset:0; pointer-events:none; z-index:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%);
+  font-family:'JetBrains Mono',monospace; font-size:.66rem;
+  letter-spacing:.24em; text-transform:uppercase; color:#838383;
 }
 
-/* ── HERO ── */
-.hero{ position:relative; padding:96px 0 56px; overflow:hidden }
-@media(min-width:768px){ .hero{ padding:150px 0 90px } }
-.hero h1{
-  font-family:Oswald,sans-serif; font-weight:700; text-transform:uppercase;
-  font-size:clamp(2.6rem,10.5vw,6.6rem); line-height:.92; letter-spacing:-.02em;
-  margin:22px 0 26px;
+/* ── PRELOADER ────────────────────────────────────────────────────── */
+#pre{
+  position:fixed; inset:0; z-index:200; background:#070707;
+  display:grid; place-items:center;
+  transition:transform 1s cubic-bezier(.76,0,.24,1);
 }
-.hero h1 em{ font-style:normal; color:var(--acid) }
-.lede{ color:var(--mid); font-size:clamp(1rem,2.4vw,1.16rem); line-height:1.75; max-width:44ch }
-.dot{
-  display:inline-block; width:7px; height:7px; border-radius:50%;
-  background:var(--acid); margin-right:9px; vertical-align:middle;
-}
+#pre.gone{ transform:translateY(-101%) }
 
-/* ── ТООН БАРИМТ ── */
-.stats{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
-  border-top:1px solid var(--line); margin-top:44px; padding-top:26px; max-width:600px;
-}
-.stats b{ font-family:Oswald,sans-serif; font-weight:700; font-size:clamp(1.5rem,5vw,2.1rem); display:block; line-height:1 }
-.stats span{ font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--dim); display:block; margin-top:8px; line-height:1.5 }
+/* ── КУРСОР (зөвхөн хулгана бүхий төхөөрөмж) ──────────────────────── */
+#cur,#curDot{ position:fixed; top:0; left:0; z-index:190; pointer-events:none; border-radius:99px; opacity:0 }
+#cur{ width:34px; height:34px; border:1px solid rgba(237,234,228,.35); margin:-17px 0 0 -17px;
+      transition:width .3s,height .3s,border-color .3s,background .3s }
+#curDot{ width:4px; height:4px; background:var(--acid); margin:-2px 0 0 -2px }
+body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
+#cur.grow{ width:64px; height:64px; margin:-32px 0 0 -32px; border-color:var(--acid); background:var(--acid-dim) }
 
-/* ── АЖЛЫН КАРТ ── */
-.works{ padding:56px 0 20px }
-@media(min-width:768px){ .works{ padding:90px 0 30px } }
-.works-head{
-  display:flex; align-items:baseline; justify-content:space-between;
-  gap:20px; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:34px;
+/* ── ХЭЭ / АТМОСФЕР ───────────────────────────────────────────────── */
+.grain::after{
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
 }
-.works-head h2{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
-  font-size:clamp(1.3rem,4vw,2rem); line-height:1 }
+.vline{ position:absolute; top:0; bottom:0; width:1px; background:rgba(255,255,255,.045) }
+.orb{ position:absolute; border-radius:9999px; pointer-events:none; filter:blur(90px); opacity:.5 }
 
-.grid{ display:grid; gap:18px; grid-template-columns:1fr }
-@media(min-width:700px){ .grid{ grid-template-columns:repeat(2,1fr); gap:22px } }
-@media(min-width:1080px){ .grid{ grid-template-columns:repeat(3,1fr) } }
-
-.card{
-  position:relative; display:flex; flex-direction:column;
-  border:1px solid var(--line); background:var(--panel); border-radius:14px; overflow:hidden;
-  transition:border-color .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+/* ── HERO ─────────────────────────────────────────────────────────── */
+.hero-word{
+  position:absolute; inset:auto 0 0 0; transform-origin:left bottom;
+  will-change:transform,opacity;
 }
-@media(hover:hover){
-  .card:hover{ transform:translateY(-4px); border-color:rgba(198,242,78,.4) }
-  .card:hover .thumb i,
-  .card:hover .thumb img{ transform:scale(1.08) }
-  .card:hover h3{ color:var(--acid) }
+.hero-word .ch{ display:inline-block; will-change:transform }
+.hero-word .wd{ display:inline-block; white-space:nowrap }
+.hero-word .mega{ font-size:clamp(2.6rem,14.5vw,8rem) }
+.ph.hero-photo{
+  background:
+    radial-gradient(52% 44% at 68% 30%, rgba(255,255,255,.20), transparent 66%),
+    radial-gradient(80% 70% at 78% 52%, rgba(198,242,78,.055), transparent 70%),
+    linear-gradient(202deg,#2B2B2B 0%,#141414 46%,#0A0A0A 78%);
 }
-
-/* Урьдчилсан харагдац — жинхэнэ зураг биш, сайт бүрийн өнгөөр зурсан хийсвэр
-   дүрслэл. Хурдан ачаалагдана, ямар ч файл татахгүй.
-   БОДИТ ЗУРАГ ТАВИХ бол .thumb доторхыг <img> -ээр солино (16:10 харьцаа). */
-.thumb{ position:relative; aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid var(--line) }
-.thumb i{
-  position:absolute; inset:0; display:block;
-  transition:transform 1s cubic-bezier(.16,1,.3,1);
+.ph.hero-photo::before{
+  content:''; position:absolute; inset:0; z-index:2;
+  background:linear-gradient(90deg,#0A0A0A 0%,rgba(10,10,10,.55) 26%,transparent 58%);
 }
-/* Бодит зураг тавихад: CONFIG.works[].img талбар бөглөнө */
-.thumb img{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; display:block;
-  transition:transform 1s cubic-bezier(.16,1,.3,1);
-}
-.thumb::after{
+.ph{ position:relative; background:linear-gradient(155deg,#171717,#0B0B0B 70%) }
+.ph::after{
   content:''; position:absolute; inset:0;
   background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:15px 15px;
-}
-.thumb b{
-  position:absolute; left:14px; top:13px; z-index:2;
-  font-family:'JetBrains Mono',monospace; font-size:.6rem; font-weight:500;
-  letter-spacing:.16em; text-transform:uppercase;
-  color:var(--bone); background:rgba(7,7,7,.7); border:1px solid var(--line);
-  padding:5px 9px; border-radius:99px; backdrop-filter:blur(6px);
-}
-.thumb u{
-  position:absolute; right:14px; bottom:13px; z-index:2; text-decoration:none;
-  font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--dim);
+  background-size:16px 16px;
 }
 
-.body{ padding:20px; display:flex; flex-direction:column; flex:1 }
-.card h3{ font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
-  font-size:1.16rem; line-height:1.15; margin-bottom:9px; transition:color .35s }
-.card p{ color:var(--mid); font-size:.88rem; line-height:1.68; margin-bottom:16px }
-.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px }
-.tags span{
-  font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--dim);
-  border:1px solid var(--line); padding:4px 8px; border-radius:5px;
+.step{ transition:color .5s,opacity .5s }
+.step-bar{ transform-origin:left; transform:scaleX(.18); transition:transform .7s cubic-bezier(.16,1,.3,1),background .5s }
+.step.on{ color:#EDEAE4 }
+.step.on .step-bar{ transform:scaleX(1); background:var(--acid) }
+
+.prog{ height:1px; background:rgba(255,255,255,.12); position:relative; overflow:hidden }
+.prog i{ position:absolute; inset:0; background:var(--acid); transform:scaleX(0); transform-origin:left }
+
+/* ── MARQUEE ──────────────────────────────────────────────────────── */
+.mq{ display:flex; width:max-content; will-change:transform }
+.mq-l{ animation:mqL var(--d,46s) linear infinite }
+.mq-r{ animation:mqR var(--d,58s) linear infinite }
+@keyframes mqL{ from{transform:translate3d(0,0,0)}   to{transform:translate3d(-50%,0,0)} }
+@keyframes mqR{ from{transform:translate3d(-50%,0,0)} to{transform:translate3d(0,0,0)} }
+.mq-row:hover .mq{ animation-play-state:paused }
+
+.chip{
+  border:1px solid rgba(255,255,255,.09); border-radius:99px;
+  padding:.8rem 1.7rem; white-space:nowrap;
+  font-family:'Oswald',sans-serif; font-weight:500; font-size:1.05rem;
+  letter-spacing:.06em; text-transform:uppercase; color:#A3A3A3;
+  transition:color .35s,border-color .35s,background .35s,box-shadow .45s;
 }
-.acts{ display:flex; gap:9px; margin-top:auto }
+.mq-row:hover .chip{ opacity:.42 }
+.mq-row .chip:hover{
+  opacity:1; color:#0A0A0A; background:var(--acid); border-color:var(--acid);
+  box-shadow:0 0 44px rgba(198,242,78,.34);
+}
+
+/* ── ҮЙЛЧИЛГЭЭНИЙ МӨР ─────────────────────────────────────────────── */
+.srv{ position:relative; border-top:1px solid rgba(255,255,255,.08); overflow:hidden }
+.srv::before{
+  content:''; position:absolute; left:0; bottom:-1px; height:1px; width:100%;
+  background:var(--acid); transform:scaleX(0); transform-origin:left;
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+.srv-in{ transition:transform .6s cubic-bezier(.16,1,.3,1),color .4s }
+@media (hover:hover){
+  .srv:hover::before{ transform:scaleX(1) }
+  .srv:hover .srv-in{ transform:translateX(18px) }
+  .srv:hover .srv-num{ color:var(--acid) }
+  .srv:hover .srv-arrow{ transform:translate(0,0); opacity:1 }
+}
+.srv-arrow{ transform:translate(-12px,12px); opacity:0; transition:all .55s cubic-bezier(.16,1,.3,1) }
+
+/* ── ТӨСЛИЙН КАРТ ─────────────────────────────────────────────────── */
+.prj-media{ overflow:hidden; position:relative }
+.prj-media > .inner{ transition:transform 1.1s cubic-bezier(.16,1,.3,1) }
+.prj-meta{
+  transition:opacity .55s ease,transform .55s cubic-bezier(.16,1,.3,1);
+  opacity:0; transform:translateY(14px);
+}
+@media (hover:hover){
+  .prj:hover .prj-media > .inner{ transform:scale(1.07) }
+  .prj:hover .prj-meta{ opacity:1; transform:translateY(0) }
+  .prj:hover .prj-title{ color:var(--acid) }
+}
+@media (hover:none){ .prj-meta{ opacity:1; transform:none } }
+
+/* ── КАРТ (багц, холбоо барих) ───────────────────────────────────── */
+.card{
+  position:relative; border-radius:18px;
+  background:linear-gradient(168deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  border:1px solid rgba(255,255,255,.08);
+  transition:border-color .45s cubic-bezier(.16,1,.3,1),
+             transform .45s cubic-bezier(.16,1,.3,1),
+             background .45s ease;
+}
+.card::before{
+  content:''; position:absolute; inset:0; border-radius:inherit; opacity:0;
+  transition:opacity .45s ease; pointer-events:none;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(198,242,78,.10), transparent 62%);
+}
+@media (hover:hover){
+  .card:hover{ transform:translateY(-4px); border-color:rgba(198,242,78,.30) }
+  .card:hover::before{ opacity:1 }
+}
+.edge-top::after{
+  content:''; position:absolute; top:-1px; left:14%; right:14%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(198,242,78,.55), transparent);
+}
+
+/* ── ТОВЧНУУД ────────────────────────────────────────────────────── */
 .btn{
-  flex:1; text-align:center; font-family:Oswald,sans-serif; font-weight:600;
-  text-transform:uppercase; font-size:.78rem; letter-spacing:.09em;
-  padding:11px 8px; border-radius:9px; transition:background .3s,color .3s,border-color .3s;
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase;
+  letter-spacing:.14em; font-size:.8rem;
+  transition:all .3s cubic-bezier(.16,1,.3,1); white-space:nowrap;
 }
-.btn-a{ background:var(--acid); color:var(--base) }
-.btn-a:hover{ background:#d8ff62 }
+.btn-primary{ background:var(--acid); color:#0A0A0A; padding:.95rem 1.6rem }
+.btn-primary:hover{ background:#d8ff62; transform:translateY(-2px) }
+.btn-ghost{ background:rgba(255,255,255,.045); color:#EDEAE4; padding:.95rem 1.6rem; border:1px solid rgba(255,255,255,.11) }
+.btn-ghost:hover{ background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.24); transform:translateY(-2px) }
 
-/* Бөглөөгүй талбартай ажлыг тэмдэглэнэ */
-.warn{
-  font-family:'JetBrains Mono',monospace; font-size:.62rem; line-height:1.5;
-  color:var(--acid); background:rgba(198,242,78,.07);
-  border:1px solid rgba(198,242,78,.2); border-radius:7px;
-  padding:8px 10px; margin-bottom:16px;
+/* ── FOOTER-ийн аварга бичиг ──────────────────────────────────────── */
+.giant{
+  font-family:'Roboto Flex','Oswald',Impact,sans-serif;
+  font-variation-settings:'wdth' 62,'wght' 900;
+  font-weight:900; line-height:.72; letter-spacing:-.03em;
+  font-size:clamp(5.5rem,25.5vw,21rem);
+  background:linear-gradient(180deg,#4A4A4A 0%,#1C1C1C 62%,#0A0A0A 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent; -webkit-text-fill-color:transparent;
+  user-select:none;
 }
 
-/* ── ХОЛБОО БАРИХ ── */
-.contact{ padding:70px 0 90px; border-top:1px solid var(--line); margin-top:60px }
-.contact h2{ font-family:Oswald,sans-serif; font-weight:700; text-transform:uppercase;
-  font-size:clamp(1.8rem,6.5vw,3.4rem); line-height:1; margin:20px 0 30px }
-.contact h2 em{ font-style:normal; color:var(--acid) }
-.links{ display:flex; flex-wrap:wrap; gap:10px }
-.links a{
-  font-family:Oswald,sans-serif; font-weight:600; text-transform:uppercase;
-  font-size:.84rem; letter-spacing:.1em; padding:13px 24px;
-  border:1px solid var(--line); border-radius:99px; transition:all .3s;
+/* ── ФОРМ ─────────────────────────────────────────────────────────── */
+.fld{
+  width:100%; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.14);
+  padding:.95rem 0; color:#EDEAE4; font-size:1rem; outline:none;
+  transition:border-color .4s;
 }
-.links a:first-child{ background:var(--acid); color:var(--base); border-color:var(--acid) }
-.links a:not(:first-child):hover{ border-color:var(--acid); color:var(--acid) }
+.fld::placeholder{ color:#4F4F4F }
+.fld:focus{ border-color:var(--acid) }
+textarea.fld{ resize:none }
+select.fld{
+  appearance:none; -webkit-appearance:none; padding-right:1.6rem; cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23838383' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 2px center;
+}
+select.fld option{ background:#161616; color:#EDEAE4 }
 
-footer{ border-top:1px solid var(--line); padding:26px 0 34px }
-.foot{ display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
-  font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--dim) }
+/* JSON блок дотор идэвхтэй мөрийг тодруулна */
+.json-row{ transition:opacity .35s,background .35s; padding:.05rem .5rem; margin-left:-.5rem }
+.json-row.on{ background:rgba(198,242,78,.07) }
+.caret{ display:inline-block; width:7px; height:1.05em; background:var(--acid);
+  vertical-align:-.18em; animation:blink 1.05s steps(2) infinite }
+@keyframes blink{ 50%{ opacity:0 } }
 
-/* ── SCROLL REVEAL ── IntersectionObserver-оор, ямар ч сан ашиглахгүй ── */
-.rv{ opacity:0; transform:translateY(24px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1) }
-.rv.on{ opacity:1; transform:none }
+/* ── FAQ аккордеон ───────────────────────────────────────────────── */
+summary{ list-style:none }
+summary::-webkit-details-marker{ display:none }
+details.faq{ border-bottom:1px solid rgba(255,255,255,.08) }
+details.faq summary{ cursor:pointer }
+details.faq .chev{ transition:transform .35s cubic-bezier(.16,1,.3,1) }
+details.faq[open] .chev{ transform:rotate(45deg); color:var(--acid) }
+details.faq .ans{
+  display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s cubic-bezier(.16,1,.3,1);
+}
+details.faq[open] .ans{ grid-template-rows:1fr }
+details.faq .ans > div{ overflow:hidden }
+
+/* ── АНИМАЦИЙН ЭХЛЭЛИЙН ТӨЛӨВ ─────────────────────────────────────── */
+html.anim [data-anim]{ opacity:0 }
+.reveal-all [data-anim]{ opacity:1 !important; transform:none !important }
 
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ transition-duration:.001ms !important; animation-duration:.001ms !important }
-  .rv{ opacity:1 !important; transform:none !important }
-  html{ scroll-behavior:auto }
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  [data-anim]{ opacity:1 !important; transform:none !important }
+  .mq-l,.mq-r{ animation:none !important }
 }
-.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap }
+
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
 </style>
+
+<script>
+/* Анимацийн эхлэлийн төлөвийг ХАМГИЙН ЭРТ тавина. Хоёр эрсдэлээс сэргийлнэ:
+   1) контент харагдаад гэнэт алга болох анивчилт
+   2) GSAP ирээгүйгээс болж хуудас хоосон үлдэх */
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) document.documentElement.classList.add('anim');
+  setTimeout(function(){
+    if (!window.gsap){
+      document.documentElement.classList.remove('anim');
+      document.body && document.body.classList.add('reveal-all');
+      var p = document.getElementById('pre'); if (p) p.classList.add('gone');
+    }
+  }, 1400);
+})();
+</script>
 </head>
 
-<body>
-<a href="#works" class="sr-only">Ажлууд руу очих</a>
+<body class="font-body antialiased bg-base text-bone">
 
-<header class="hero">
-  <div class="grid-bg"></div>
-  <div class="wrap" style="position:relative;z-index:1">
-    <p class="label rv"><span class="dot"></span><span id="kicker"></span></p>
-    <h1 class="rv" id="h1"></h1>
-    <p class="lede rv" id="lede"></p>
-    <dl class="stats rv" id="stats"></dl>
+<!-- PRELOADER -->
+<div id="pre" aria-hidden="true">
+  <div class="text-center px-6">
+    <div class="mega text-[15vw] sm:text-[9vw] leading-none text-bone/90">DOKAY</div>
+    <div class="mn text-[11px] tracking-[.3em] text-dim mt-5">
+      <span id="preNum">000</span> / 100
+    </div>
   </div>
+</div>
+
+<!-- Хулганы курсор (зөвхөн desktop) -->
+<div id="cur" aria-hidden="true"></div>
+<div id="curDot" aria-hidden="true"></div>
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[210] focus:bg-acid focus:text-base focus:px-4 focus:py-2 focus:font-bold">Үндсэн агуулга руу очих</a>
+
+<!-- НАВИГАЦ — хөвөгч шилэн капсул -->
+<header class="fixed top-3 sm:top-5 inset-x-0 z-[100] px-4 sm:px-6 pointer-events-none">
+  <div id="navCap" class="mx-auto max-w-[940px] pointer-events-auto
+              flex items-center justify-between gap-4
+              rounded-full border border-line bg-base/55 backdrop-blur-xl
+              pl-5 pr-2 sm:pl-6 sm:pr-2.5 h-14 transition-all duration-500">
+    <a href="#hero" class="hd text-[15px] tracking-[.14em] shrink-0" data-link>
+      DOKAY<span class="text-acid">.</span>
+    </a>
+    <nav id="navLinks" class="hidden md:flex items-center gap-1" aria-label="Үндсэн цэс"></nav>
+    <a id="navCta" href="#contact" data-link
+       class="hd text-[12.5px] tracking-[.14em] rounded-full bg-bone text-base px-5 h-10 hidden sm:flex items-center hover:bg-acid transition-colors">
+      ХОЛБОГДОХ
+    </a>
+    <button id="burger" class="md:hidden w-10 h-10 grid place-items-center -mr-1" aria-label="Цэс" aria-expanded="false" aria-controls="mMenu">
+      <span class="block w-5 h-px bg-bone relative before:content-[''] before:absolute before:w-5 before:h-px before:bg-bone before:-top-1.5 after:content-[''] after:absolute after:w-5 after:h-px after:bg-bone after:top-1.5"></span>
+    </button>
+  </div>
+  <div id="mMenu" class="md:hidden hidden mx-auto max-w-[940px] mt-2 pointer-events-auto
+              rounded-3xl border border-line bg-base/95 backdrop-blur-xl p-3"></div>
 </header>
 
-<main id="works" class="works">
-  <div class="wrap">
-    <div class="works-head rv">
-      <h2 id="worksTitle"></h2>
-      <span class="label" id="worksCount"></span>
+<main id="main">
+
+  <!-- ═══ 1 · HERO (pin + scroll-scrub) ═══ -->
+  <section id="hero" class="relative">
+    <div class="hero-pin relative h-[100svh] min-h-[560px] overflow-hidden grain">
+
+      <div id="heroPhoto" class="hero-photo ph absolute inset-y-0 right-0 w-full lg:w-[52%] opacity-70 lg:opacity-100"></div>
+      <div class="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-t from-base via-base/25 to-transparent"></div>
+
+      <div class="hidden lg:block vline left-[16.66%]"></div>
+      <div class="hidden lg:block vline left-[50%]"></div>
+      <div class="hidden lg:block vline left-[83.33%]"></div>
+
+      <div class="relative z-[2] h-full max-w-shell mx-auto px-5 sm:px-8 flex flex-col pt-20 sm:pt-24 pb-7 sm:pb-9">
+
+        <div class="flex justify-between items-start gap-8 shrink-0">
+          <p class="label" id="heroLoc"></p>
+          <p class="mn text-[11px] tracking-[.2em] text-dim">
+            <span id="heroIdx" class="text-bone">01</span> / <span id="heroTot">03</span>
+          </p>
+        </div>
+
+        <div class="flex-1 min-h-[1rem]"></div>
+
+        <ol id="heroSteps" class="hidden sm:flex items-end gap-6 lg:gap-9 mb-8 lg:mb-10 shrink-0" aria-hidden="true"></ol>
+
+        <div class="shrink-0">
+          <p class="label mb-4 sm:mb-6" id="heroKicker"></p>
+          <div id="heroStage" class="relative w-full" aria-live="polite">
+            <h1 class="sr-only" id="heroSr"></h1>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 sm:gap-12 mt-6 sm:mt-7 shrink-0">
+          <p id="heroDesc" class="text-[14px] sm:text-[15px] leading-[1.7] text-mid max-w-[34rem] min-h-[3.4em]"></p>
+          <p class="mn text-[10.5px] tracking-[.2em] text-dim shrink-0 hidden sm:block"><span id="progPct">0</span>%</p>
+        </div>
+
+        <div class="mt-6 sm:mt-8 shrink-0">
+          <p class="mn text-[10.5px] sm:text-[11px] tracking-[.22em] text-acid flex items-center gap-2.5 mb-3">
+            <span class="inline-block animate-bounce">↓</span>
+            <span id="heroHint">SCROLL TO SCRUB TIMELINE</span>
+          </p>
+          <div class="prog"><i id="progFill"></i></div>
+        </div>
+      </div>
     </div>
-    <div class="grid" id="grid"></div>
-  </div>
+  </section>
+
+  <section id="about"    class="relative py-24 sm:py-40 border-t border-line"></section>
+  <section id="stack"    class="relative py-20 sm:py-28 border-t border-line overflow-hidden"></section>
+  <section id="services" class="relative py-24 sm:py-36 border-t border-line"></section>
+  <section id="process"  class="relative py-24 sm:py-36 border-t border-line"></section>
+  <section id="pricing"  class="relative py-24 sm:py-36 border-t border-line overflow-hidden"></section>
+  <section id="work"     class="relative py-24 sm:py-36 border-t border-line"></section>
+  <section id="faq"      class="relative py-24 sm:py-36 border-t border-line"></section>
+  <section id="contact"  class="relative py-24 sm:py-36 border-t border-line overflow-hidden"></section>
+
 </main>
 
-<section class="contact">
-  <div class="wrap">
-    <p class="label rv" id="contactLabel"></p>
-    <h2 class="rv" id="contactTitle"></h2>
-    <div class="links rv" id="links"></div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot">
-    <span id="legal"></span>
-    <span id="place"></span>
-  </div>
-</footer>
+<footer id="footer" class="relative border-t border-line overflow-hidden"></footer>
 
 <noscript>
-  <div style="padding:40px 20px;max-width:700px">
-    <h2 style="font-family:Oswald,sans-serif">DOKAY — Хийгдсэн ажлууд</h2>
-    <ul style="margin-top:16px;line-height:2.2">
-      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-portfolio/">Хувийн portfolio</a></li>
-      <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-ai-service/">Dokay AI Service</a></li>
+  <div style="position:fixed;inset:0;z-index:300;background:#0A0A0A;color:#EDEAE4;padding:3rem 1.5rem;font-family:sans-serif;overflow:auto">
+    <h1 style="font-size:2rem;letter-spacing:-.02em">DOKAY</h1>
+    <p style="color:#A3A3A3;margin-top:1rem;line-height:1.75;max-width:38rem">
+      Жаргалсайхан Дөлгөөн — AI автоматжуулалт, вэб хөгжүүлэлт, контент, цахим урилга. Дархан, Монгол.
+    </p>
+    <p style="margin-top:1.5rem;line-height:2">
+      Имэйл: <a href="mailto:dulguun.ah@gmail.com" style="color:#C6F24E">dulguun.ah@gmail.com</a><br>
+      Утас: <a href="tel:+97699202721" style="color:#C6F24E">+976 9920 2721</a>
+    </p>
+    <ul style="margin-top:1.25rem;line-height:2.1">
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/dokay-journeys-onepager/">Dokay Journeys</a></li>
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/">Хуримын урилга</a></li>
       <li><a style="color:#C6F24E" href="https://ghostshdee.github.io/urilga-sevleg-mongolhuu/">Сэвлэг үргээх урилга</a></li>
     </ul>
-    <p style="margin-top:20px;color:#A3A3A3">Имэйл: dulguun.ah@gmail.com</p>
   </div>
 </noscript>
 
-<script>
-/* ═══════════════════════════════════════════════════════════════════════
-   ██  CONFIG — ЭНЭ ХУУДСЫН БҮХ АГУУЛГА
-   ═══════════════════════════════════════════════════════════════════════
-   Шинэ ажил нэмэх бол `works` жагсаалтад нэг мөр нэмнэ. Өөр юу ч
-   өөрчлөх шаардлагагүй — тоо, дараалал бүгд автоматаар шинэчлэгдэнэ.
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
-   tone   → картын урьдчилсан харагдацын өнгө (img байхгүй үед)
-   img    → урьдчилсан харагдацын зураг, ж: 'assets/portfolio.jpg' (16:10 харьцаа).
-            Хоосон бол tone өнгөт дэвсгэр гарна.
-   live   → GitHub Pages дээрх амьд хаяг (хоосон бол товч гарахгүй)
-   note   → анхааруулга. Бөглөөгүй талбартай ажилд бичнэ.
-   ═══════════════════════════════════════════════════════════════════════ */
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  CONFIG — САЙТЫН БҮХ АГУУЛГА
+   ═══════════════════════════════════════════════════════════════════════════
+   Онцгой тохиолдол: <head>-ийн SEO/OG мета таг (crawler JS ажиллуулдаггүй).
+   Тэдгээрийг ЭНД БИШ, <head> дотор гараар засна — CONFIG.seo-той тааруулна.
+   ═══════════════════════════════════════════════════════════════════════════ */
 const CONFIG = {
 
-  me: {
-    kicker:  'Жаргалсайхан Дөлгөөн · Дархан, Монгол',
-    /* <em> дотор бичсэн үг шохой ногоон болно */
-    title:   'Хийгдсэн<br><em>ажлууд</em>',
-    lede:    'AI автоматжуулалт, вэбсайт, цахим урилга бүтээдэг. Доорх бүх ажил амьдаар ажиллаж байгаа — товшоод шууд үзээрэй.',
-    stats: [
-      { k:'5',       v:'Амьд ажиллаж буй сайт' },
-      { k:'3 хоног', v:'Дундаж хугацаа' },
-      { k:'2026',    v:'Сүүлд шинэчилсэн' }
-    ]
+  /* ── SEO (JSON-LD + гараар бичсэн <head>-ийн лавлах эх) ───────────── */
+  seo: {
+    title:       'Dokay — AI автоматжуулалт, вэб, контент, цахим урилга',
+    description: 'Жаргалсайхан Дөлгөөн (Dokay). Дархан хотоос AI автоматжуулалт, вэбсайт хөгжүүлэлт, AI контент, цахим урилга. Ажил захиалах бол холбогдоорой.',
+    canonical:   'https://ghostshdee.github.io/',
+    ogImage:     'https://ghostshdee.github.io/assets/og.jpg'
   },
 
-  worksTitle: 'Ажлууд',
+  /* ── ХУВИЙН МЭДЭЭЛЭЛ ─────────────────────────────────────────────── */
+  me: {
+    short:    'DOKAY',
+    fullName: 'Жаргалсайхан Дөлгөөн',
+    location: 'ДАРХАН, МОНГОЛ · +8 GMT',
+    kicker:   'ЖАРГАЛСАЙХАН ДӨЛГӨӨН — 2026',
+    jobTitle: 'AI автоматжуулалт, вэб хөгжүүлэгч, контент бүтээгч'
+  },
 
-  works: [
-    {
-      title: 'Dokay — Хувийн portfolio',
-      kind:  'Вэбсайт', year:'2026', tone:'lime',
-      desc:  'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
-      tech:  ['GSAP','ScrollTrigger','Lenis','Tailwind'],
-      live:  'https://ghostshdee.github.io/dokay-portfolio/',
-      img:   'assets/dokay-portfolio.jpg',
-      note:  'Төслүүд нь жишээ өгөгдөл — бодит ажлаар солих'
-    },
-    {
-      title: 'Dokay AI Service',
-      kind:  'Вэбсайт', year:'2026', tone:'teal',
-      desc:  'Дарханы жижиг, дунд бизнест зориулсан үйлчилгээний сайт. 11 хэсэг, лид цуглуулах форм, багцын харьцуулалт.',
-      tech:  ['GSAP','Tailwind','Форм'],
-      live:  'https://ghostshdee.github.io/dokay-ai-service/',
-      img:   'assets/dokay-ai-service.jpg',
-      note:  'Сэтгэгдэл, портфолио нь жишээ — солих шаардлагатай'
-    },
-    {
-      title: 'Dokay Journeys',
-      kind:  'Нэг хуудас', year:'2026', tone:'amber',
-      desc:  'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
-      tech:  ['HTML','CSS'],
-      live:  'https://ghostshdee.github.io/dokay-journeys-onepager/',
-      img:   'assets/dokay-journeys.jpg',
-      note:  ''
-    },
-    {
-      title: 'Гэрлэх ёслолын хурим',
-      kind:  'Цахим урилга', year:'2026', tone:'rose',
-      desc:  'Батбаяр & Алтанцэцэг · 09.19 · Шангри-Ла. Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
-      tech:  ['GSAP','Tailwind','RSVP'],
-      live:  'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/',
-      img:   'assets/urilga-hurim.jpg',
-      note:  'Цомгийн зураг нь stock — хосын жинхэнэ зургаар солих'
-    },
-    {
-      title: 'Сэвлэг үргээх ёслол',
-      kind:  'Цахим урилга', year:'2026', tone:'violet',
-      desc:  'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
-      tech:  ['GSAP','RSVP'],
-      live:  'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/',
-      img:   'assets/urilga-sevleg.jpg',
-      note:  ''
-    }
+  /* ── ХОЛБОО БАРИХ ─────────────────────────────────────────────────
+     ⚠️ Facebook / Messenger / Instagram хаяг баталгаажаагүй — нийтлэхээс
+     өмнө биечлэн нээж шалгана. */
+  contact: {
+    email:     'dulguun.ah@gmail.com',
+    phone:     '+97699202721',
+    phoneShow: '+976 9920 2721',
+    messenger: 'https://m.me/dokayaiservice',
+    facebook:  'https://facebook.com/dokayaiservice',
+    instagram: 'https://instagram.com/dokayaiservice',
+    city:      'Дархан, Монгол',
+    addressLocality: 'Дархан',
+    addressRegion:   'Дархан-Уул',
+    replyNote: 'Мессежид ажлын өдөр 1 цагийн дотор хариу өгнө'
+  },
+
+  /* ── ЦЭС ─────────────────────────────────────────────────────────── */
+  nav: [
+    { label:'Тухай',      href:'#about'    },
+    { label:'Ур чадвар',  href:'#stack'    },
+    { label:'Үйлчилгээ',  href:'#services' },
+    { label:'Багц',       href:'#pricing'  },
+    { label:'Ажлууд',     href:'#work'     },
+    { label:'Асуулт',     href:'#faq'      }
   ],
 
-  contact: {
-    label: 'Ажил ярих уу',
-    title: 'Дараагийн төслөө<br><em>эхлүүлэх үү?</em>',
-    links: [
-      { label:'Имэйл бичих', href:'mailto:dulguun.ah@gmail.com' },
-      { label:'Messenger',   href:'https://m.me/dokayaiservice' },
-      { label:'Facebook',    href:'https://facebook.com/dokayaiservice' }
+  /* ── 1 · HERO ─────────────────────────────────────────────────────── */
+  hero: {
+    hint: 'SCROLL TO SCRUB TIMELINE',
+    words: [
+      { text:'AI АВТОМАТЖУУЛАЛТ',
+        desc:'n8n, Make.com дээр урсгал зурж, давтагддаг ажлыг чинь бүрмөсөн авч хаяна. Мессеж, захиалга, тайлан — өөрөө өөрийгөө хийдэг болно.' },
+      { text:'ВЭБ ХӨГЖҮҮЛЭЛТ',
+        desc:'Загварчилсан template биш. GSAP-аар хөдөлгөөнтэй, утсан дээр хурдан, чиний бизнест л зориулж бүтээсэн сайт.' },
+      { text:'КОНТЕНТ БҮТЭЭГЧ',
+        desc:'AI-аар видео, зураг, текстийг өдөр бус цагаар гаргана. Гараар нягтлаад, брэндийн өнгөнд оруулж өгнө.' }
     ]
   },
 
+  /* ── 2 · ТУХАЙ ───────────────────────────────────────────────────── */
+  about: {
+    label: '(01) ТУХАЙ',
+    statement: 'Би Дарханд суугаад, {{давтагддаг ажлыг устгадаг}} системүүд бүтээдэг. Код, AI, дизайн гурвыг нэг дор — учир нь ажил дуусахад л үнэ цэнэ гардаг, тусад нь биш.',
+    body: [
+      'Ихэнх жижиг бизнес маркетингаа мэддэггүйдээ биш, цаг байхгүйдээ л орхидог. Тэр цагийг нь буцааж өгөх — миний хийдэг ажил тэр.',
+      'Ажлаа хугацаанд нь өгдөг. Хэзээ бэлэн болохыг эхнээс нь хэлдэг. Хойшлох бол урьдчилж мэдэгддэг.'
+    ]
+  },
+
+  /* ── 3 · TECH STACK ─────────────────────────────────────────────── */
+  stack: {
+    label: '(02) УР ЧАДВАР',
+    title: 'Юугаар{{ ажилладаг вэ}}',
+    rowALabel: 'АВТОМАТЖУУЛАЛТ & AI',
+    rowA: ['n8n','Make.com','Claude','GPT','Zapier','Airtable','Google Apps Script','Webhook','REST API','Google Sheets'],
+    rowBLabel: 'ВЭБ & БҮТЭЭЛ',
+    rowB: ['HTML','CSS','JavaScript','Tailwind','GSAP','ScrollTrigger','Figma','Premiere Pro','Midjourney','After Effects','Lenis']
+  },
+
+  /* ── 4 · ҮЙЛЧИЛГЭЭ ──────────────────────────────────────────────── */
+  services: {
+    label: '(03) ҮЙЛЧИЛГЭЭ',
+    title: 'Юу хийж{{ өгдөг вэ}}',
+    sub: 'Ажил бүр дээр юу гарч ирэх, хэр хугацаанд бэлэн болохыг урьдчилж хэлнэ.',
+    items: [
+      { id:'video',  name:'AI ВИДЕО КОНТЕНТ', tagline:'Reels, TikTok, зар сурталчилгааны ролик',
+        desc:'Бүтээгдэхүүн, үйлчилгээгээ сурталчлах богино видеог AI-аар бүтээж, монгол хадмал, дуу, брэндийн өнгөөр гүйцээнэ.',
+        duration:'3–5 хоног' },
+      { id:'auto',   name:'АВТОМАТЖУУЛАЛТ', tagline:'DM автомат хариулт, захиалга авах систем',
+        desc:'Facebook, Instagram-д ирсэн мессежид шөнө ч, амралтын өдөр ч хариу өгнө. Захиалга, лидийг Google Sheet-д цэгцтэй цуглуулна.',
+        duration:'5–7 хоног' },
+      { id:'web',    name:'AI ВЭБСАЙТ', tagline:'Landing page, каталог, жижиг дэлгүүр',
+        desc:'Утаснаас ордог хүнд зориулсан хурдан, цэвэр сайт. Үйлчилгээ, үнэ, байршил, холбогдох суваг бүгд нэг хуудсанд.',
+        duration:'5–7 хоног' },
+      { id:'invite', name:'AI ЦАХИМ УРИЛГА', featured:true, tagline:'Хурим, төрсөн өдөр, даахь үргээх',
+        desc:'Утсан дээр нээхэд анимацтай задардаг мобайл урилга. Зураг, видео, газрын зураг, тоолуур, ирэх эсэхийн хариулт багтана.',
+        duration:'1–2 хоног' },
+      { id:'data',   name:'AI ДАТАШИЙТ', tagline:'Каталог, үнийн хүснэгт, тайлан',
+        desc:'Бүтээгдэхүүний жагсаалт, үзүүлэлт, үнийн хүснэгтийг боловсруулж, хэвлэхэд ч, илгээхэд ч бэлэн PDF/Excel болгоно.',
+        duration:'2–3 хоног' }
+    ]
+  },
+
+  /* ── 5 · АЖЛЫН ЯВЦ ─────────────────────────────────────────────── */
+  process: {
+    label: '(04) АЖЛЫН ЯВЦ',
+    title: 'Дөрвөн алхам. {{Гайхшрал байхгүй.}}',
+    sub: 'Аль алхамд явж байгаагаа та үргэлж мэдэж байна. Хугацаа хойшлох бол урьдчилж хэлнэ.',
+    steps: [
+      { n:'01', t:'Ярилцана', d:'Утсаар 15 минут, эсвэл Дарханд уулзана. Танай бизнес юу зардаг, хэн худалдан авдаг, юу нь хамгийн их саад болж байгааг сонсоно.', meta:'Үнэгүй' },
+      { n:'02', t:'Санал ирнэ', d:'Юу хийхээ, хэдэн хоногт, ямар үнээр гэдгээ бичгээр илгээнэ. Дунд нь нэмэгдэх зардал байхгүй.', meta:'24 цагийн дотор' },
+      { n:'03', t:'Бүтээнэ',  d:'Эхний хувилбарыг 48–72 цагт харуулна. Та хараад, засах зүйлээ хэлнэ. Хоёр удаа үнэгүй засварлана.', meta:'2–7 хоног' },
+      { n:'04', t:'Хүлээлгэж өгнө', d:'Бүх файл, эрхийг танд шилжүүлнэ. Хэрхэн ашиглах, өөрчлөхийг видеогоор заана. Дараа нь ч асуувал хариулна.', meta:'Файл бүрэн танд' }
+    ]
+  },
+
+  /* ── 6 · БАГЦ ──────────────────────────────────────────────────────
+     showPrices: false → тоо харагдахгүй, оронд нь ₮/₮₮/₮₮₮ түвшин гарна. */
+  pricing: {
+    showPrices: false,
+    label: '(05) БАГЦ',
+    title: 'Хэмжээгээрээ сонго. {{Үнийг 24 цагт}} бичгээр авна',
+    sub: 'Ажил бүр өөр өөр цар хүрээтэй тул нэг тогтсон үнэ тавьдаггүй. Танай хэрэгцээг сонсоод, тодорхой тоог бичгээр илгээнэ — дунд нь нэмэгдэх зардал байхгүй.',
+    tiers: [
+      {
+        name:'Энгийн', scale:'₮', price:'', timeline:'1–7 хоног',
+        for:'Эхлээд туршиж үзье гэсэн бизнест',
+        desc:'Нэг тодорхой ажлыг чанартай хийлгээд, үр дүнг нь хараад шийднэ.',
+        features:['Нэг үйлчилгээ сонгоно','2 удаа үнэгүй засвар','Бүх файл танд үлдэнэ','7 хоногийн дэмжлэг'],
+        notFor:'Сар бүр тогтмол контент хэрэгтэй бол энэ багц хүрэлцэхгүй.',
+        cta:'Энэ багцаар санал авах', featured:false
+      },
+      {
+        name:'Стандарт', scale:'₮₮', price:'', timeline:'Сар бүр тогтмол',
+        for:'Тогтмол контенттой байхыг хүсэж буй бизнест',
+        desc:'Сар бүр тогтмол контент + нэг том ажил. Хамгийн олон бизнес үүнийг сонгодог.',
+        features:['Сард 4 видео контент','Нэг том ажил (вэб / автоматжуулалт)','Сарын контентын төлөвлөгөө','3 удаа үнэгүй засвар','Сар бүрийн тайлан','Мессежийн тэргүүн ээлжийн хариулт'],
+        notFor:'Ганц удаагийн ажил хийлгэх бол Энгийн багц хямд байна.',
+        cta:'Энэ багцаар санал авах', featured:true, badge:'Ихэнх нь үүнийг сонгодог'
+      },
+      {
+        name:'Бүрэн', scale:'₮₮₮', price:'', timeline:'Сар бүр · багаараа',
+        for:'Маркетингаа бүхэлд нь хариуцуулмаар бизнест',
+        desc:'Контент, вэб, автоматжуулалт — бүгдийг нэг багаар. Та бизнесээ л хийнэ.',
+        features:['Сард 8+ видео контент','Вэбсайт + тогтмол шинэчлэлт','DM автомат хариулт & лид систем','Даташийт / каталог','Хязгааргүй засвар','Сар бүр биечлэн уулзалт','Тусгайлан хариуцсан хүн'],
+        notFor:'Дотооддоо маркетингийн хүнтэй бол ийм хэмжээ шаардлагагүй.',
+        cta:'Энэ багцаар санал авах', featured:false
+      }
+    ],
+    factorsTitle: 'Үнэд юу нөлөөлдөг вэ',
+    factors: [
+      { t:'Хэмжээ',   d:'Хэдэн видео, хэдэн хуудас, хэдэн бүтээгдэхүүн гэдгээс хамаарна.' },
+      { t:'Хугацаа',  d:'Ердийн дараалалд орох уу, эсвэл яаралтай хийх үү.' },
+      { t:'Материал', d:'Зураг, лого, текст тань бэлэн байвал ажил хямд, хурдан болдог.' }
+    ],
+    note: 'Бүх багц гэрээтэй. Урьдчилгаа 50%, ажил дууссаны дараа үлдэгдэл. Дунд нь ажлаас татгалзвал хийгдсэн хэсгээр тооцно. Санал ирсний дараа та ямар ч үүрэг хүлээхгүй.'
+  },
+
+  /* ── 7 · АЖЛУУД ─────────────────────────────────────────────────── */
+  work: {
+    label: '(06) АЖЛУУД',
+    title: 'Сүүлд{{ хийсэн}}',
+    items: [
+      { title:'Dokay — Хувийн portfolio', tag:'ВЭБСАЙТ', year:'2026',
+        desc:'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
+        tech:['GSAP','ScrollTrigger','Lenis','Tailwind'], img:'assets/dokay-portfolio.jpg', live:'', merged:true },
+      { title:'Dokay AI Service', tag:'ВЭБСАЙТ', year:'2026',
+        desc:'Дарханы жижиг, дунд бизнест зориулсан үйлчилгээний сайт. Лид цуглуулах форм, багцын харьцуулалт, ажлын явц.',
+        tech:['GSAP','Tailwind','Форм'], img:'assets/dokay-ai-service.jpg', live:'', merged:true },
+      { title:'Dokay Journeys', tag:'НЭГ ХУУДАС', year:'2026',
+        desc:'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
+        tech:['HTML','CSS'], img:'assets/dokay-journeys.jpg', live:'https://ghostshdee.github.io/dokay-journeys-onepager/' },
+      { title:'Гэрлэх ёслолын хурим', tag:'ЦАХИМ УРИЛГА', year:'2026',
+        desc:'Батбаяр & Алтанцэцэг · 09.19 · Шангри-Ла. Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
+        tech:['GSAP','Tailwind','RSVP'], img:'assets/urilga-hurim.jpg', live:'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/' },
+      { title:'Сэвлэг үргээх ёслол', tag:'ЦАХИМ УРИЛГА', year:'2026',
+        desc:'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
+        tech:['GSAP','RSVP'], img:'assets/urilga-sevleg.jpg', live:'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/' }
+    ]
+  },
+
+  /* ── 8 · FAQ ──────────────────────────────────────────────────────── */
+  faq: {
+    label: '(07) АСУУЛТ',
+    title: 'Асуухаас {{эргэлзэж}} байсан зүйлс',
+    items: [
+      { q:'Яагаад үнээ сайт дээрээ бичээгүй юм бэ?',
+        a:'Ажил болгон өөр цар хүрээтэй байдаг. Нэг видео, арван видео хоёр өөр зардалтай. Хуурамч «эхлэх үнэ» бичээд дараа нь нэмэх дуртай биш учраас, танай хэрэгцээг сонсоод яг таг тоог 24 цагийн дотор бичгээр илгээдэг. Тэр тоо эцсийн тоо байна — дунд нь нэмэгдэхгүй.' },
+      { q:'AI-аар хийсэн ажил чанар муутай байдаг биш үү?',
+        a:'AI бол хэрэгсэл, хийж гүйцэтгэгч биш. Бид AI-аар хурдан хувилбар гаргаад, дараа нь гараар засаж, өнгө, хадмал, дуу, брэндийн хэв маягийг нэг бүрчлэн тааруулдаг. Тиймээс хугацаа богиносдог болохоос чанар буудаггүй. Эхний хувилбарыг харах хүртэл та мөнгө төлөхгүй.' },
+      { q:'Хэдэн хоногт бэлэн болох вэ?',
+        a:'Цахим урилга 1–2 хоног. Даташийт 2–3 хоног. Видео 3–5 хоног. Вэбсайт болон автоматжуулалт 5–7 хоног. Яаралтай бол хэлээрэй — боломжтой эсэхийг шууд хэлнэ, боломжгүй бол «болно» гэж хэлээд хойшлуулдаггүй.' },
+      { q:'Засвар хийлгэж болох уу? Хэдэн удаа?',
+        a:'Энгийн багцад 2 удаа, Стандартад 3 удаа үнэгүй засвар багтана. Бүрэн багцад хязгааргүй. Засвар гэдэг нь өнгө, текст, дараалал, хэсэг солих зэрэг. Ажлын чиглэлийг бүтнээр нь өөрчлөх бол дахин ярилцаж, шинээр тооцно.' },
+      { q:'Төлбөрөө яаж хийх вэ?',
+        a:'Гэрээ байгуулаад урьдчилгаа 50%, ажил хүлээлгэж өгөхөд үлдсэн 50%. Банкны шилжүүлэг. Нэхэмжлэх, баримт бүрэн гаргана. Сарын хөтлөлттэй багц бол сар бүрийн эхэнд.' },
+      { q:'Файлууд маань хэнийх байх вэ?',
+        a:'Танайх. Эх файл, эрх, нэвтрэх мэдээлэл бүгд танд шилжинэ. Хожим бидэнтэй ажиллахаа болих юм бол ямар ч зүйлээ «түгжигдээд» үлдээхгүй. Вэбсайтын домэйн, хостинг ч танай нэр дээр бүртгэгддэг.' },
+      { q:'Дархан биш, өөр аймагт байгаа бол?',
+        a:'Болно. Ажлын 90% нь онлайнаар явдаг — утас, Messenger, видео дуудлагаар. Зөвхөн шаардлагатай бол уулзана. УБ, Эрдэнэт, Сүхбаатар зэрэг газраас захиалга авдаг.' },
+      { q:'Одоохондоо бага зэрэг эргэлзэж байна. Юу хийх вэ?',
+        a:'Утсаар 15 минут ярья. Юу ч худалдахгүй — танай нөхцөлд юу хамгийн түрүүнд хийвэл үр дүн гарахыг л хэлнэ. Тэр зөвлөгөө үнэгүй, өөрөө хийх гэвэл ч хэрхэн хийхийг зааж өгнө.' }
+    ]
+  },
+
+  /* ── 9 · ХОЛБОГДОХ ─────────────────────────────────────────────────
+     endpoint — Formspree / Google Apps Script / серверийн хаяг.
+     Хоосон бол: текстийг бэлдэж, Messenger/залгах/хуулах сонголт өгнө. */
+  contact_section: {
+    label: '(08) ХОЛБОГДОХ',
+    title: 'Ажил{{ ярья}}',
+    sub: 'Нэр, утсаа үлдээгээрэй. Ажлын өдөр 1 цагийн дотор хариулна.',
+    endpoint: '',
+    fields: {
+      name:    { label:'Нэр',  ph:'Таны нэр' },
+      phone:   { label:'Утас', ph:'8 оронтой дугаар' },
+      service: { label:'Юу сонирхож байна?', ph:'Сонгоно уу' },
+      message: { label:'Товч тайлбар (заавал биш)', ph:'Юу хийлгэмээр байна?' }
+    },
+    moreLabel: 'Дэлгэрэнгүй бичих (заавал биш)',
+    extraOptions: ['Хэд хэдэн үйлчилгээ','Юу хэрэгтэйгээ мэдэхгүй байна'],
+    submit: 'ИЛГЭЭХ',
+    okTitle:'ХҮЛЭЭЖ АВЛАА',
+    okText: 'Ажлын өдөр 1 цагийн дотор хариу бичнэ. Яаралтай бол шууд залгаарай.',
+    assurances: [
+      'Дугаараа хэн нэгэнд өгөхгүй, зар илгээхгүй',
+      'Ярианы дараа ямар нэг үүрэг хүлээхгүй',
+      'Дархан дотор хүсвэл биечлэн очиж уулзана'
+    ]
+  },
+
+  /* ── FOOTER ──────────────────────────────────────────────────────── */
   footer: {
-    legal: '© ' + new Date().getFullYear() + ' Жаргалсайхан Дөлгөөн',
-    place: 'Дархан, Монгол'
+    cta: 'Дараагийн төслөө{{ эхлүүлэх үү?}}',
+    socials: [
+      { label:'FACEBOOK',  href:'https://facebook.com/dokayaiservice' },
+      { label:'INSTAGRAM', href:'https://instagram.com/dokayaiservice' },
+      { label:'MESSENGER', href:'https://m.me/dokayaiservice' },
+      { label:'EMAIL',     href:'mailto:dulguun.ah@gmail.com' }
+    ],
+    legal: '© ' + new Date().getFullYear() + ' Жаргалсайхан Дөлгөөн'
   }
 };
 
-/* ═══════════════════════════════════════════════════════════════════════
-   ██  ЗУРАХ
-   ═══════════════════════════════════════════════════════════════════════ */
-const $ = s => document.querySelector(s);
-const esc = s => String(s).replace(/[&<>"']/g, c =>
-  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  ТУСЛАХ ФУНКЦУУД
+   ═══════════════════════════════════════════════════════════════════════════ */
+const $  = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* {{ }} дотор бичсэн үгийг accent өнгөөр онцлох (эхлээд escape хийнэ) */
+const hl = s => esc(s).replace(/\{\{(.+?)\}\}/g,'<span class="text-acid">$1</span>');
 
-/* Картын урьдчилсан харагдацын өнгө. Сайт бүр өөрийн аястай байснаар
-   жагсаалт нэг хэвийн харагдахгүй. */
-const TONE = {
-  lime:  'linear-gradient(145deg,#28331A,#0C0E0A 72%)',
-  teal:  'linear-gradient(145deg,#08302B,#090C0B 72%)',
-  amber: 'linear-gradient(145deg,#33240B,#0C0A07 72%)',
-  rose:  'linear-gradient(145deg,#340F1F,#0C0709 72%)',
-  violet:'linear-gradient(145deg,#251034,#0A070C 72%)',
-  blue:  'linear-gradient(145deg,#0A2440,#07090C 72%)'
+/* Хэсгийн гарчгийн стандарт блок */
+const secHead = (label, title, sub) => `
+  <div class="mb-14 sm:mb-20" data-anim>
+    <p class="label mb-6">${esc(label)}</p>
+    <h2 class="hd text-[2.4rem] sm:text-[4.2rem] leading-[.95] max-w-3xl">${hl(title)}</h2>
+    ${sub ? `<p class="text-mid text-[15px] sm:text-[16px] leading-[1.75] max-w-xl mt-6">${esc(sub)}</p>` : ''}
+  </div>`;
+
+/* SVG дүрсний сан */
+const ICON = {
+  video:'<path d="M15 10l4.55-2.27A1 1 0 0121 8.6v6.8a1 1 0 01-1.45.87L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/>',
+  mail:'<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7.5l8.2 5.6a1.5 1.5 0 001.6 0L21 7.5"/>',
+  phone:'<path d="M5 3h3.6l1.8 4.5-2.2 1.3a12.5 12.5 0 006 6l1.3-2.2L20 14.4V18a2 2 0 01-2.2 2A16.5 16.5 0 013.9 5.2 2 2 0 015 3z"/>',
+  chat:'<path d="M20.5 12c0 4.2-3.8 7.5-8.5 7.5a9.8 9.8 0 01-3.1-.5L4 20.5l1.4-4A7.1 7.1 0 013.5 12C3.5 7.8 7.3 4.5 12 4.5s8.5 3.3 8.5 7.5z"/>',
+  check:'<path d="M20 6.5L9.5 17.5 4.5 12.5"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  shield:'<path d="M12 3l7.5 3v6c0 4.6-3.2 7.9-7.5 9-4.3-1.1-7.5-4.4-7.5-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  spark:'<path d="M12 2.5l2.1 5.9 5.9 2.1-5.9 2.1L12 18.5l-2.1-5.9L4 10.5l5.9-2.1z"/>'
 };
+const icon = (name, cls='w-5 h-5', sw=1.6) =>
+  `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name]||ICON.spark}</svg>`;
 
-/* Hero */
-$('#kicker').textContent = CONFIG.me.kicker;
-$('#h1').innerHTML       = CONFIG.me.title;
-$('#lede').textContent   = CONFIG.me.lede;
-$('#stats').innerHTML = CONFIG.me.stats.map(s => `
-  <div><dt class="sr-only">${esc(s.v)}</dt><dd><b>${esc(s.k)}</b><span>${esc(s.v)}</span></dd></div>`).join('');
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  ХЭСЭГ БҮРИЙГ ЗУРАХ
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Ажлууд */
-$('#worksTitle').textContent = CONFIG.worksTitle;
-$('#worksCount').textContent = String(CONFIG.works.length).padStart(2,'0') + ' ажил';
+/* ── НАВИГАЦ ── */
+function renderNav(){
+  $('#navLinks').innerHTML = CONFIG.nav.map(n => `
+    <a href="${n.href}" data-link data-navlink="${n.href}"
+       class="relative hd text-[12px] tracking-[.12em] text-mid hover:text-bone transition-colors px-3 py-2">
+      ${esc(n.label)}
+      <i class="nav-dot absolute left-1/2 -translate-x-1/2 bottom-0.5 w-1 h-1 rounded-full bg-acid opacity-0 transition-opacity duration-300"></i>
+    </a>`).join('');
 
-$('#grid').innerHTML = CONFIG.works.map(w => `
-  <article class="card rv">
-    <div class="thumb">
-      ${w.img
-        ? `<img src="${esc(w.img)}" alt="${esc(w.title)} — урьдчилсан харагдац" loading="lazy">`
-        : `<i style="background:${TONE[w.tone] || TONE.lime}"></i>`}
-      <b>${esc(w.kind)}</b>
-      <u>${esc(w.year)}</u>
+  $('#mMenu').innerHTML =
+    CONFIG.nav.map(n => `
+      <a href="${n.href}" data-link class="block hd text-[17px] tracking-[.1em] px-4 py-3.5 text-mid hover:text-bone transition">${esc(n.label)}</a>`).join('') +
+    `<a href="#contact" data-link class="block hd text-[15px] tracking-[.14em] text-center mt-2 rounded-full bg-acid text-base px-4 py-3.5">ХОЛБОГДОХ</a>`;
+}
+
+/* ── 1 · HERO ── */
+function renderHero(){
+  const h = CONFIG.hero, me = CONFIG.me;
+  $('#heroLoc').textContent    = me.location;
+  $('#heroKicker').textContent = me.kicker;
+  $('#heroHint').textContent   = h.hint;
+  $('#heroTot').textContent    = String(h.words.length).padStart(2,'0');
+  $('#heroSr').textContent = me.fullName + ' — ' + h.words.map(w => w.text).join(', ');
+
+  $('#heroStage').innerHTML = h.words.map((w,i) => `
+    <div class="hero-word ${i===0 ? '' : 'opacity-0'}" data-word="${i}" aria-hidden="true">
+      <div class="mega text-bone whitespace-normal lg:whitespace-nowrap">
+        ${w.text.split(/\s+/).filter(Boolean).map(word =>
+          `<span class="wd">${word.split('').map(ch => `<span class="ch">${esc(ch)}</span>`).join('')}</span>`
+        ).join(' ')}
+      </div>
+    </div>`).join('');
+
+  $('#heroSteps').innerHTML = h.words.map((w,i) => `
+    <li class="step ${i===0 ? 'on' : ''} flex-1 max-w-[190px] text-dim" data-step="${i}">
+      <span class="mn text-[10px] tracking-[.2em] block mb-2.5">${String(i+1).padStart(2,'0')}</span>
+      <span class="block h-px bg-white/15"><span class="step-bar block h-px bg-white/30"></span></span>
+    </li>`).join('');
+
+  $('#heroDesc').textContent = h.words[0].desc;
+}
+
+/* ── ГАРЧГИЙГ БАГАНЫН ӨРГӨНД ЯГ ТААРУУЛАХ ── */
+function fitHero(){
+  const stage = $('#heroStage'); if (!stage) return;
+  const megas = $$('.hero-word .mega', stage);
+  if (!megas.length) return;
+
+  const REF  = 100;
+  const boxW = stage.clientWidth;
+  const wide = window.innerWidth >= 1024;
+
+  megas.forEach(el => el.style.fontSize = REF + 'px');
+
+  let widest = 0;
+  megas.forEach(el => {
+    if (wide){
+      const sp = el.querySelectorAll('.ch');
+      if (!sp.length) return;
+      const w = sp[sp.length-1].getBoundingClientRect().right - sp[0].getBoundingClientRect().left;
+      widest = Math.max(widest, w / REF);
+    } else {
+      el.querySelectorAll('.wd').forEach(wd => {
+        widest = Math.max(widest, wd.getBoundingClientRect().width / REF);
+      });
+    }
+  });
+  if (!widest){ megas.forEach(el => el.style.fontSize = ''); return; }
+
+  const cap  = wide ? window.innerHeight * 0.21 : window.innerHeight * 0.115;
+  const size = Math.min(boxW / widest, cap, wide ? 190 : 84);
+  megas.forEach(el => el.style.fontSize = size + 'px');
+
+  stage.style.height = Math.max(...$$('.hero-word', stage).map(el => el.offsetHeight)) + 'px';
+}
+
+/* ── 2 · ТУХАЙ ── */
+function renderAbout(){
+  const a = CONFIG.about;
+  $('#about').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8">
+      <p class="label mb-10 sm:mb-14" data-anim>${esc(a.label)}</p>
+      <div class="max-w-3xl">
+        <p class="hd text-[1.75rem] sm:text-[2.7rem] leading-[1.18] text-bone mb-10" data-anim>
+          ${hl(a.statement)}
+        </p>
+        <div class="space-y-5">
+          ${a.body.map(p => `<p class="text-mid text-[15px] sm:text-[16.5px] leading-[1.8]" data-anim>${esc(p)}</p>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── 3 · TECH STACK ── */
+function renderStack(){
+  const s = CONFIG.stack;
+  const chips = arr => arr.map(t => `<span class="chip mx-1.5">${esc(t)}</span>`).join('');
+  const row = (arr, dir, dur, label) => `
+    <div class="mq-row py-3 sm:py-4">
+      <p class="label max-w-shell mx-auto px-5 sm:px-8 mb-3.5">${esc(label)}</p>
+      <div class="mq mq-${dir}" style="--d:${dur}" role="list">
+        <div class="flex">${chips(arr)}</div>
+        <div class="flex" aria-hidden="true">${chips(arr)}</div>
+      </div>
+    </div>`;
+
+  $('#stack').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8">
+      ${secHead(s.label, s.title)}
     </div>
-    <div class="body">
-      <h3>${esc(w.title)}</h3>
-      <p>${esc(w.desc)}</p>
-      ${w.note ? `<p class="warn">${esc(w.note)}</p>` : ''}
-      <div class="tags">${w.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div>
-      <div class="acts">
-        ${w.live ? `<a class="btn btn-a" href="${w.live}" target="_blank" rel="noopener">Үзэх</a>` : ''}
+    <div class="space-y-6 sm:space-y-9"
+         style="mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+                -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)">
+      ${row(s.rowA,'l','48s',s.rowALabel)}
+      ${row(s.rowB,'r','62s',s.rowBLabel)}
+    </div>`;
+}
+
+/* ── 4 · ҮЙЛЧИЛГЭЭ ── */
+function renderServices(){
+  const s = CONFIG.services;
+  $('#services').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8">
+      ${secHead(s.label, s.title, s.sub)}
+      <div class="border-b border-line">
+        ${s.items.map((it,i) => `
+          <a href="#contact" data-link class="srv group block py-7 sm:py-9" data-anim>
+            <div class="srv-in grid grid-cols-[auto_1fr_auto] gap-4 sm:gap-8 items-baseline">
+              <span class="srv-num mn text-[11px] text-dim transition-colors w-7">${String(i+1).padStart(2,'0')}</span>
+              <div class="min-w-0">
+                <div class="flex items-center gap-3 flex-wrap mb-1.5">
+                  <h3 class="hd text-[1.5rem] sm:text-[2.35rem] leading-none">${esc(it.name)}</h3>
+                  ${it.featured ? `<span class="mn text-[9px] tracking-[.18em] text-acid border border-acid/40 px-2 py-1">ОНЦЛОХ</span>` : ''}
+                </div>
+                <p class="mn text-[11px] text-dim tracking-wide mb-2.5">${esc(it.tagline)}</p>
+                <p class="text-mid text-[14px] sm:text-[15px] leading-[1.7] max-w-[52ch]">${esc(it.desc)}</p>
+              </div>
+              <div class="flex items-center gap-4 sm:gap-6 shrink-0">
+                <span class="mn text-[10.5px] text-dim tracking-wider hidden sm:inline text-right max-w-[9rem]">${esc(it.duration)}</span>
+                <span class="srv-arrow text-acid text-xl leading-none">↗</span>
+              </div>
+            </div>
+          </a>`).join('')}
+      </div>
+    </div>`;
+}
+
+/* ── 5 · АЖЛЫН ЯВЦ ── */
+function renderProcess(){
+  const p = CONFIG.process;
+  $('#process').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8">
+      ${secHead(p.label, p.title, p.sub)}
+      <ol class="border-t border-line">
+        ${p.steps.map(st => `
+          <li class="group grid grid-cols-[auto_1fr] sm:grid-cols-[auto_1fr_auto] gap-x-5 sm:gap-x-10 gap-y-3
+                     items-start py-8 sm:py-10 border-b border-line" data-anim>
+            <span class="mega text-[2.6rem] sm:text-[3.8rem] leading-[.85] text-bone/[.12]
+                         group-hover:text-acid/50 transition-colors duration-500 select-none">${esc(st.n)}</span>
+            <div class="min-w-0">
+              <h3 class="hd text-[19px] sm:text-[24px] mb-2.5">${esc(st.t)}</h3>
+              <p class="text-[14.5px] sm:text-[15.5px] text-mid leading-[1.75] max-w-[52ch]">${esc(st.d)}</p>
+            </div>
+            <span class="col-start-2 sm:col-start-3 justify-self-start sm:justify-self-end
+                         mn text-[10px] uppercase tracking-[.14em] text-acid
+                         border border-acid/25 bg-acid/[.07] rounded-full px-3.5 py-1.5 whitespace-nowrap">
+              ${esc(st.meta)}
+            </span>
+          </li>`).join('')}
+      </ol>
+    </div>`;
+}
+
+/* ── 6 · БАГЦ ── */
+function renderPricing(){
+  const p = CONFIG.pricing;
+  $('#pricing').innerHTML = `
+    <div class="orb w-[420px] h-[420px] top-0 right-0" style="background:rgba(198,242,78,.06)"></div>
+    <div class="max-w-shell mx-auto px-5 sm:px-8 relative">
+      ${secHead(p.label, p.title, p.sub)}
+
+      <div class="grid lg:grid-cols-3 gap-4 sm:gap-5 items-start">
+        ${p.tiers.map(t => `
+          <article class="card edge-top p-7 sm:p-8 flex flex-col h-full relative
+                          ${t.featured ? 'border-acid/40 bg-acid/[.045] lg:-mt-4 lg:mb-4' : ''}" data-anim>
+            ${t.badge ? `
+              <span class="absolute -top-3 left-7 mn text-[9px] font-bold uppercase tracking-[.12em]
+                           bg-acid text-base rounded-full px-3.5 py-1.5">${esc(t.badge)}</span>` : ''}
+
+            <h3 class="hd text-[22px] mb-1.5 ${t.featured ? 'mt-2' : ''}">${esc(t.name)}</h3>
+            <p class="text-[13.5px] text-acid/85 font-medium mb-5">${esc(t.for)}</p>
+
+            <div class="mb-5 pb-5 border-b border-line">
+              ${p.showPrices && t.price
+                ? `<div class="mega text-[2.1rem] text-bone">${esc(t.price)}</div>`
+                : `<div class="flex items-baseline gap-2.5">
+                     <span class="mega text-[2rem] text-acid">${esc(t.scale)}</span>
+                     <span class="text-[12.5px] text-dim">харьцангуй хэмжээ</span>
+                   </div>
+                   <p class="text-[12.5px] text-dim mt-2">Яг таг үнийг 24 цагт бичгээр илгээнэ</p>`}
+            </div>
+
+            <p class="text-[14px] text-mid leading-[1.7] mb-6">${esc(t.desc)}</p>
+
+            <ul class="space-y-3 mb-6">
+              ${t.features.map(f => `
+                <li class="flex gap-2.5 text-[14px] text-bone/85">
+                  <span class="text-acid shrink-0 mt-[3px]">${icon('check','w-[15px] h-[15px]',2.5)}</span>${esc(f)}
+                </li>`).join('')}
+            </ul>
+
+            <p class="text-[13px] text-dim leading-relaxed mb-7 pt-5 border-t border-line flex gap-2.5">
+              <span class="shrink-0 mt-[2px] text-dim/70">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+              </span>
+              <span>${esc(t.notFor)}</span>
+            </p>
+
+            <a href="#contact" data-link class="btn ${t.featured ? 'btn-primary' : 'btn-ghost'} w-full mt-auto">${esc(t.cta)}</a>
+          </article>`).join('')}
+      </div>
+
+      <div class="mt-10 rounded-2xl border border-line bg-white/[.025] p-6 sm:p-8" data-anim>
+        <h3 class="hd text-[14px] tracking-[.14em] text-bone/70 mb-6">${esc(p.factorsTitle)}</h3>
+        <div class="grid sm:grid-cols-3 gap-6 sm:gap-8">
+          ${p.factors.map((f,i) => `
+            <div class="flex gap-3.5">
+              <span class="shrink-0 w-7 h-7 rounded-lg bg-acid/10 border border-acid/20 text-acid
+                           grid place-items-center mn text-[12px]">${i+1}</span>
+              <div>
+                <b class="block hd text-[15px] mb-1">${esc(f.t)}</b>
+                <p class="text-[13.5px] text-mid leading-[1.65]">${esc(f.d)}</p>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <p class="text-[13px] text-dim mt-6 flex items-start gap-2 max-w-2xl" data-anim>
+        ${icon('shield','w-4 h-4 shrink-0 mt-px')}<span>${esc(p.note)}</span>
+      </p>
+    </div>`;
+}
+
+/* ── 7 · АЖЛУУД ── */
+function renderWork(){
+  const w = CONFIG.work;
+  $('#work').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8">
+      ${secHead(w.label, w.title)}
+      <div class="grid md:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-14 sm:gap-y-24">
+        ${w.items.map((p,i) => `
+          <article class="prj group ${i % 2 ? 'md:mt-28' : ''}" data-anim>
+            <div class="prj-media aspect-[4/3] mb-5">
+              <div class="inner w-full h-full">
+                <img src="${esc(p.img)}" alt="${esc(p.title)} — дэлгэцийн зураг" loading="lazy" class="w-full h-full object-cover">
+              </div>
+              <span class="absolute top-4 left-4 z-[4] mn text-[10px] tracking-[.18em] text-bone bg-base/80 border border-line px-2.5 py-1">${esc(p.tag)}</span>
+            </div>
+
+            <div class="flex items-baseline justify-between gap-5 mb-3">
+              <h3 class="prj-title hd text-[1.35rem] sm:text-[1.75rem] leading-tight transition-colors">${esc(p.title)}</h3>
+              <span class="mn text-[11px] text-dim shrink-0">${esc(p.year)}</span>
+            </div>
+
+            <div class="prj-meta">
+              <p class="text-mid text-[14px] leading-[1.75] mb-4 max-w-[46ch]">${esc(p.desc)}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                ${p.tech.map(t => `<span class="mn text-[10px] tracking-wider text-dim border border-line px-2.5 py-1">${esc(t)}</span>`).join('')}
+              </div>
+              ${p.live
+                ? `<a href="${esc(p.live)}" target="_blank" rel="noopener" class="mn text-[11px] tracking-[.16em] text-acid hover:underline underline-offset-4">ҮЗЭХ ↗</a>`
+                : (p.merged ? `<p class="mn text-[10.5px] text-dim">→ Энэ сайт одоо энэ нүүр хуудас болон нэгдсэн</p>` : '')}
+            </div>
+          </article>`).join('')}
+      </div>
+    </div>`;
+}
+
+/* ── 8 · FAQ ── */
+function renderFaq(){
+  const f = CONFIG.faq;
+  $('#faq').innerHTML = `
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      ${secHead(f.label, f.title)}
+      <div class="border-t border-line">
+        ${f.items.map((it,i) => `
+          <details class="faq group" ${i===0 ? 'open' : ''} data-anim>
+            <summary class="flex items-start justify-between gap-6 py-6 text-left">
+              <h3 class="font-head font-semibold text-[16px] sm:text-[18px] text-bone/95 group-hover:text-acid transition-colors">${esc(it.q)}</h3>
+              <span class="chev shrink-0 text-dim mt-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="ans"><div>
+              <p class="text-[14.5px] sm:text-[15.5px] text-mid leading-[1.8] pb-7 pr-8 max-w-[62ch]">${esc(it.a)}</p>
+            </div></div>
+          </details>`).join('')}
+      </div>
+
+      <div class="mt-10 rounded-2xl border border-line bg-white/[.03] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center gap-5" data-anim>
+        <div class="flex-1">
+          <h3 class="hd text-[16px] mb-1.5">Асуулт чинь эндээс олдсонгүй юу?</h3>
+          <p class="text-[14px] text-mid leading-relaxed">Messenger-ээр бичээрэй. Ажлын өдөр 1 цагийн дотор бодит хүн хариулна.</p>
+        </div>
+        <a href="${CONFIG.contact.messenger}" target="_blank" rel="noopener" class="btn btn-primary shrink-0 w-full sm:w-auto">
+          ${icon('chat','w-[18px] h-[18px]')} Messenger-ээр бичих
+        </a>
+      </div>
+    </div>`;
+}
+
+/* ── 9 · ХОЛБОГДОХ — амьд JSON + форм ── */
+function renderContact(){
+  const c = CONFIG.contact_section, ct = CONFIG.contact;
+  const opts = [...CONFIG.services.items.map(s => s.name), ...c.extraOptions];
+
+  $('#contact').innerHTML = `
+    <div class="orb w-[520px] h-[520px] -bottom-40 left-1/2 -translate-x-1/2" style="background:rgba(198,242,78,.10)"></div>
+    <div class="max-w-shell mx-auto px-5 sm:px-8 relative">
+      ${secHead(c.label, c.title, c.sub)}
+
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+        <!-- ЗҮҮН: шууд суваг + амьд JSON + баталгаа -->
+        <div class="order-2 lg:order-1 space-y-8">
+          <div class="grid gap-3">
+            <a href="tel:${ct.phone}" class="card p-5 flex items-center gap-4 group" data-anim>
+              <span class="w-11 h-11 rounded-xl bg-acid text-base grid place-items-center shrink-0">${icon('phone','w-5 h-5',1.8)}</span>
+              <span class="flex-1"><b class="block hd text-[16px]">${esc(ct.phoneShow)}</b><span class="text-[13px] text-dim">Хамгийн хурдан зам — шууд залгаарай</span></span>
+              <span class="text-dim group-hover:text-acid transition-colors">${icon('arrow','w-5 h-5',2)}</span>
+            </a>
+            <a href="${ct.messenger}" target="_blank" rel="noopener" class="card p-5 flex items-center gap-4 group" data-anim>
+              <span class="w-11 h-11 rounded-xl bg-white/[.06] text-acid grid place-items-center shrink-0">${icon('chat','w-5 h-5',1.8)}</span>
+              <span class="flex-1"><b class="block hd text-[16px]">Messenger</b><span class="text-[13px] text-dim">${esc(ct.replyNote)}</span></span>
+              <span class="text-dim group-hover:text-acid transition-colors">${icon('arrow','w-5 h-5',2)}</span>
+            </a>
+            <a href="mailto:${ct.email}" class="card p-5 flex items-center gap-4 group" data-anim>
+              <span class="w-11 h-11 rounded-xl bg-white/[.06] text-acid grid place-items-center shrink-0">${icon('mail','w-5 h-5',1.8)}</span>
+              <span class="flex-1"><b class="block hd text-[16px]">${esc(ct.email)}</b><span class="text-[13px] text-dim">Имэйлээр дэлгэрэнгүй бичих</span></span>
+              <span class="text-dim group-hover:text-acid transition-colors">${icon('arrow','w-5 h-5',2)}</span>
+            </a>
+          </div>
+
+          <div class="border border-line bg-void" data-anim>
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-line">
+              <span class="w-2 h-2 rounded-full bg-white/12"></span>
+              <span class="w-2 h-2 rounded-full bg-white/12"></span>
+              <span class="w-2 h-2 rounded-full bg-white/12"></span>
+              <span class="mn text-[10px] text-dim ml-2">request.json</span>
+              <span id="jsonState" class="mn text-[10px] text-dim ml-auto">idle</span>
+            </div>
+            <pre id="jsonOut" class="mn text-[12px] sm:text-[13px] leading-[2] p-5 sm:p-6 overflow-x-auto" aria-hidden="true"></pre>
+          </div>
+
+          <ul class="space-y-2.5" data-anim>
+            ${c.assurances.map(a => `
+              <li class="flex gap-2.5 text-[13.5px] text-dim">
+                <span class="text-acid/70 shrink-0 mt-[3px]">${icon('check','w-[15px] h-[15px]',2.4)}</span>${esc(a)}
+              </li>`).join('')}
+          </ul>
+        </div>
+
+        <!-- БАРУУН: форм -->
+        <div class="order-1 lg:order-2 card edge-top p-6 sm:p-8" data-anim>
+          <form id="leadForm" novalidate class="space-y-7">
+            <div>
+              <label for="lf-name" class="label block mb-2">${esc(c.fields.name.label)} <span class="text-acid">*</span></label>
+              <input id="lf-name" name="name" type="text" required autocomplete="name" class="fld" placeholder="${esc(c.fields.name.ph)}">
+            </div>
+            <div>
+              <label for="lf-phone" class="label block mb-2">${esc(c.fields.phone.label)} <span class="text-acid">*</span></label>
+              <input id="lf-phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" class="fld" placeholder="${esc(c.fields.phone.ph)}">
+            </div>
+
+            <details id="lfMore" class="group">
+              <summary class="cursor-pointer list-none flex items-center gap-2.5 mn text-[10.5px] tracking-[.16em] uppercase text-acid hover:text-bone transition select-none py-1">
+                <span class="w-5 h-5 border border-acid/30 grid place-items-center group-open:rotate-45 transition-transform duration-300">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+                ${esc(c.moreLabel)}
+              </summary>
+              <div class="space-y-7 pt-6">
+                <div>
+                  <label for="lf-service" class="label block mb-2">${esc(c.fields.service.label)}</label>
+                  <select id="lf-service" name="service" class="fld">
+                    <option value="">${esc(c.fields.service.ph)}</option>
+                    ${opts.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}
+                  </select>
+                </div>
+                <div>
+                  <label for="lf-msg" class="label block mb-2">${esc(c.fields.message.label)}</label>
+                  <textarea id="lf-msg" name="message" rows="3" class="fld" placeholder="${esc(c.fields.message.ph)}"></textarea>
+                </div>
+              </div>
+            </details>
+
+            <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true">
+            <p id="lfErr" class="hidden mn text-[12px] text-acid" role="alert"></p>
+
+            <button type="submit" class="btn btn-primary w-full !py-4">${esc(c.submit)} ${icon('arrow','w-[18px] h-[18px]',2)}</button>
+          </form>
+
+          <div id="lfDone" class="hidden text-center py-6">
+            <span class="w-14 h-14 rounded-full bg-acid/12 border border-acid/30 text-acid grid place-items-center mx-auto mb-5">
+              ${icon('check','w-6 h-6',2.2)}
+            </span>
+            <h4 class="hd text-[1.5rem] text-acid mb-2.5">${esc(c.okTitle)}</h4>
+            <p id="lfDoneMsg" class="text-[14px] text-mid leading-relaxed mb-6">${esc(c.okText)}</p>
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <a id="lfMsn" href="#" target="_blank" rel="noopener" class="btn btn-primary flex-1">${icon('chat','w-[18px] h-[18px]')} Messenger</a>
+              <a href="tel:${ct.phone}" class="btn btn-ghost flex-1">${icon('phone','w-[18px] h-[18px]',1.8)} Залгах</a>
+            </div>
+            <button id="lfCopy" type="button" class="mt-3 mn text-[11px] text-dim hover:text-acid transition underline underline-offset-4">
+              Хүсэлтийн текстийг хуулах
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  wireContact();
+}
+
+/* Амьд JSON + формын логик */
+function wireContact(){
+  const form = $('#leadForm'), out = $('#jsonOut'), state = $('#jsonState'), errBox = $('#lfErr');
+  if (!form) return;
+  const keys = ['name','phone','service','message'];
+  let focused = null, composed = '';
+
+  function paint(){
+    const rows = keys.map((k,i) => {
+      const el = form.elements[k];
+      const val = esc(el ? el.value : '');
+      const isOn = focused === k;
+      const comma = i < keys.length - 1 ? '<span class="text-dim">,</span>' : '';
+      const caret = isOn ? '<span class="caret"></span>' : '';
+      return `<span class="json-row block ${isOn ? 'on' : ''}">  <span class="text-mid">"${k}"</span><span class="text-dim">:</span> <span class="text-acid">"${val}"</span>${caret}${comma}</span>`;
+    }).join('');
+    out.innerHTML = `<span class="text-dim">{</span>\n${rows}\n<span class="text-dim">}</span>`;
+  }
+
+  keys.forEach(k => {
+    const el = form.elements[k]; if (!el) return;
+    el.addEventListener('input', paint);
+    el.addEventListener('focus', () => { focused = k; state.textContent = 'typing'; paint(); });
+    el.addEventListener('blur',  () => { focused = null; state.textContent = 'idle'; paint(); });
+  });
+  paint();
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    errBox.classList.add('hidden');
+    const d = Object.fromEntries(new FormData(form));
+    if (d.website) return;                                   // бот — чимээгүй зогсоно
+
+    const digits = String(d.phone||'').replace(/\D/g,'');
+    if (!String(d.name||'').trim())  return fail('Нэрээ бичнэ үү.', '#lf-name');
+    if (digits.length < 8)           return fail('Утасны дугаараа бүтнээр нь бичнэ үү (8 орон).', '#lf-phone');
+
+    composed =
+      'Сайн байна уу! Үнийн санал авмаар байна.\n' +
+      'Нэр: ' + d.name + '\n' +
+      'Утас: ' + d.phone + '\n' +
+      'Үйлчилгээ: ' + (d.service || 'Тодорхойгүй') + '\n' +
+      (d.message ? 'Тайлбар: ' + d.message + '\n' : '') +
+      '— ' + CONFIG.seo.canonical;
+
+    state.textContent = 'sending';
+    const ep = CONFIG.contact_section.endpoint;
+    if (ep){
+      try{
+        const btn = form.querySelector('button[type=submit]');
+        if (btn) btn.disabled = true;
+        await fetch(ep, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d) });
+        show('Хүсэлт хүлээж авлаа. Удахгүй холбогдоно.');
+      }catch(_){ show('Илгээхэд алдаа гарлаа. Доорхоос шууд илгээж болно.'); }
+    } else {
+      show(CONFIG.contact_section.okText);
+    }
+    state.textContent = 'sent';
+  });
+
+  function fail(msg, sel){
+    errBox.textContent = msg; errBox.classList.remove('hidden');
+    const t = $(sel); if (t) t.focus();
+  }
+  function show(msg){
+    form.classList.add('hidden');
+    $('#lfDone').classList.remove('hidden');
+    $('#lfDoneMsg').textContent = msg;
+    $('#lfMsn').href = CONFIG.contact.messenger;
+    $('#lfDone').scrollIntoView({ block:'center', behavior:'smooth' });
+  }
+  const copyBtn = $('#lfCopy');
+  if (copyBtn) copyBtn.addEventListener('click', async e => {
+    try{ await navigator.clipboard.writeText(composed); e.target.textContent = 'Хуулагдлаа ✓'; }
+    catch(_){ e.target.textContent = 'Хуулж чадсангүй'; }
+  });
+}
+
+/* ── FOOTER ── */
+function renderFooter(){
+  const f = CONFIG.footer, c = CONFIG.contact;
+  $('#footer').innerHTML = `
+    <div class="max-w-shell mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-10">
+      <div class="grid lg:grid-cols-[1fr_auto] gap-10 items-end mb-20 sm:mb-28">
+        <h2 class="hd text-[2rem] sm:text-[3.4rem] leading-[1] max-w-2xl" data-anim>${hl(f.cta)}</h2>
+        <a href="mailto:${c.email}" data-anim
+           class="hd text-[13px] tracking-[.18em] inline-flex items-center justify-center h-14 px-10 bg-acid text-base hover:bg-bone transition-colors shrink-0">
+          ИМЭЙЛ БИЧИХ
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-6 pb-16 sm:pb-24 border-b border-line">
+        <div class="flex flex-wrap gap-x-7 gap-y-2">
+          ${f.socials.map(s => `
+            <a href="${s.href}" target="_blank" rel="noopener"
+               class="mn text-[11px] tracking-[.18em] text-dim hover:text-acid transition-colors">${esc(s.label)} ↗</a>`).join('')}
+        </div>
+        <p class="mn text-[11px] tracking-[.14em] text-dim">${esc(f.legal)}</p>
       </div>
     </div>
-  </article>`).join('');
 
-/* Холбоо барих + футер */
-$('#contactLabel').textContent = CONFIG.contact.label;
-$('#contactTitle').innerHTML   = CONFIG.contact.title;
-$('#links').innerHTML = CONFIG.contact.links.map(l =>
-  `<a href="${l.href}" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`).join('');
-$('#legal').textContent = CONFIG.footer.legal;
-$('#place').textContent = CONFIG.footer.place;
+    <div class="relative overflow-hidden" style="height:clamp(4.4rem,19vw,15.5rem)">
+      <div id="giant" class="giant absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-[22%] whitespace-nowrap"
+           aria-hidden="true">${esc(CONFIG.me.short)}</div>
+    </div>`;
+}
 
-/* Бүтэцлэгдсэн өгөгдөл — Google-д ажлуудыг жагсаалт хэлбэрээр таниулна */
-(function(){
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  ЗУРАХ
+   ═══════════════════════════════════════════════════════════════════════════ */
+renderNav();
+renderHero();
+renderAbout();
+renderStack();
+renderServices();
+renderProcess();
+renderPricing();
+renderWork();
+renderFaq();
+renderContact();
+renderFooter();
+injectSchema();
+
+/* Google-д зориулсан бүтэцлэгдсэн өгөгдөл (CONFIG-оос автоматаар) */
+function injectSchema(){
+  const c = CONFIG.contact, seo = CONFIG.seo, me = CONFIG.me;
+  const addr = { '@type':'PostalAddress', addressLocality:c.addressLocality, addressRegion:c.addressRegion, addressCountry:'MN' };
+  const graph = [
+    {
+      '@type':'Person', '@id': seo.canonical + '#person',
+      name: me.fullName, alternateName: me.short, jobTitle: me.jobTitle,
+      email: c.email, telephone: c.phone, url: seo.canonical, address: addr,
+      sameAs: [c.facebook, c.instagram],
+      knowsAbout: CONFIG.stack.rowA.concat(CONFIG.stack.rowB)
+    },
+    {
+      '@type':'ProfessionalService', '@id': seo.canonical + '#service',
+      name: seo.title, description: seo.description, url: seo.canonical,
+      telephone: c.phone, email: c.email,
+      areaServed: { '@type':'City', name:'Дархан' }, address: addr,
+      sameAs: [c.facebook, c.instagram], priceRange: '₮₮',
+      provider: { '@id': seo.canonical + '#person' },
+      hasOfferCatalog: {
+        '@type':'OfferCatalog', name:'Үйлчилгээ',
+        itemListElement: CONFIG.services.items.map(s => ({
+          '@type':'Offer', itemOffered:{ '@type':'Service', name:s.name, description:s.desc }
+        }))
+      }
+    },
+    {
+      '@type':'FAQPage',
+      mainEntity: CONFIG.faq.items.map(i => ({
+        '@type':'Question', name:i.q, acceptedAnswer:{ '@type':'Answer', text:i.a }
+      }))
+    },
+    {
+      '@type':'ItemList', name: seo.title + ' — ажлууд',
+      itemListElement: CONFIG.work.items.map((w,i) => ({
+        '@type':'ListItem', position:i+1, name:w.title, url: w.live || seo.canonical
+      }))
+    }
+  ];
   const s = document.createElement('script');
   s.type = 'application/ld+json';
-  s.textContent = JSON.stringify({
-    '@context':'https://schema.org','@type':'ItemList',
-    name:'Dokay — Хийгдсэн ажлууд',
-    itemListElement: CONFIG.works.map((w,i) => ({
-      '@type':'ListItem', position:i+1, url:w.live, name:w.title
-    }))
-  });
+  s.textContent = JSON.stringify({ '@context':'https://schema.org', '@graph': graph });
   document.head.appendChild(s);
-})();
+}
 
-/* ── SCROLL REVEAL ──
-   IntersectionObserver-оор. Гадны сан ашиглаагүй тул хуудас хөнгөн.
-   Дэмждэггүй хөтөч дээр бүх зүйл шууд харагдана. */
-(function(){
-  const els = document.querySelectorAll('.rv');
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  ХАРИЛЦАН ҮЙЛДЭЛ
+   ═══════════════════════════════════════════════════════════════════════════ */
+function revealAll(){
+  document.documentElement.classList.remove('anim');
+  document.body.classList.add('reveal-all');
+}
+function killPreloader(){
+  const p = $('#pre'); if (!p) return;
+  p.classList.add('gone');
+  setTimeout(() => p.remove(), 1100);
+}
+
+/* ── Утасны цэс ── */
+const burger = $('#burger'), mMenu = $('#mMenu');
+burger.addEventListener('click', () => {
+  const open = mMenu.classList.toggle('hidden') === false;
+  burger.setAttribute('aria-expanded', open);
+});
+mMenu.addEventListener('click', e => {
+  if (e.target.closest('a')){ mMenu.classList.add('hidden'); burger.setAttribute('aria-expanded','false'); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !mMenu.classList.contains('hidden')){
+    mMenu.classList.add('hidden'); burger.setAttribute('aria-expanded','false'); burger.focus();
+  }
+});
+
+/* ── Картын хулгана дагасан гэрэл ── */
+if (matchMedia('(hover:hover)').matches){
+  document.addEventListener('pointermove', e => {
+    const card = e.target.closest('.card'); if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive:true });
+}
+
+/* ── LENIS (жигд скролл) ── */
+let lenis = null;
+function initLenis(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!('IntersectionObserver' in window) || reduce){
-    els.forEach(e => e.classList.add('on'));
+  const L = window.Lenis || (window.lenis && window.lenis.default);
+  if (!L || reduce) return null;
+  const l = new L({ duration: 1.15, lerp: .09, smoothWheel: true, syncTouch: false });
+  document.documentElement.classList.add('lenis');
+  return l;
+}
+
+/* Цэсний холбоос дарахад зөөлөн гүйлгэнэ */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-link]'); if (!a) return;
+  const id = a.getAttribute('href');
+  if (!id || !id.startsWith('#')) return;
+  const t = $(id); if (!t) return;
+  e.preventDefault();
+  if (lenis) lenis.scrollTo(t, { offset:-10, duration:1.25 });
+  else t.scrollIntoView({ behavior:'smooth' });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ██  АНИМАЦИ
+   ═══════════════════════════════════════════════════════════════════════════ */
+function initAnimations(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!window.gsap || !window.ScrollTrigger || reduce){
+    revealAll(); killPreloader(); return;
+  }
+
+  document.body.classList.remove('reveal-all');
+  gsap.registerPlugin(ScrollTrigger);
+
+  lenis = initLenis();
+  if (lenis){
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  const num = $('#preNum');
+  const intro = gsap.timeline();
+
+  if (num){
+    const counter = { v:0 };
+    intro.to(counter, {
+      v:100, duration:1.05, ease:'power2.inOut',
+      onUpdate(){ num.textContent = String(Math.round(counter.v)).padStart(3,'0'); }
+    }).add(() => killPreloader());
+  }
+
+  intro
+    .from('#navCap', { y:-24, opacity:0, duration:.8, ease:'power3.out' }, num ? '+=.25' : 0)
+    .from('#heroStage .hero-word[data-word="0"] .ch', {
+      yPercent:112, opacity:0, duration:1.05, ease:'power4.out', stagger:.022
+    }, '<.05')
+    .from(['#heroKicker','#heroDesc','#heroLoc'], { opacity:0, y:16, duration:.9, stagger:.09, ease:'power3.out' }, '<.3');
+
+  const els = gsap.utils.toArray('[data-anim]');
+  gsap.set(els, { opacity:0, y:38 });
+  ScrollTrigger.batch(els, {
+    start:'top 88%', once:true,
+    onEnter: b => gsap.to(b, { opacity:1, y:0, duration:1, ease:'power3.out', stagger:.09, overwrite:true })
+  });
+
+  const words = $$('.hero-word');
+  const descEl = $('#heroDesc'), idxEl = $('#heroIdx');
+  const W = CONFIG.hero.words;
+  const steps = $$('#heroSteps .step');
+
+  function showWord(i, dur = .75){
+    words.forEach((w, k) => {
+      const active = k === i;
+      gsap.to(w, {
+        opacity: active ? 1 : 0,
+        yPercent: active ? 0 : (k < i ? -18 : 18),
+        duration: dur, ease:'power3.out', overwrite:true
+      });
+    });
+    steps.forEach((s,k) => s.classList.toggle('on', k <= i));
+    gsap.to(descEl, {
+      opacity:0, y:10, duration:dur*.34, ease:'power2.in',
+      onComplete(){
+        descEl.textContent = W[i].desc;
+        gsap.to(descEl, { opacity:1, y:0, duration:dur*.55, ease:'power3.out' });
+      }
+    });
+    idxEl.textContent = String(i+1).padStart(2,'0');
+  }
+
+  const mm = gsap.matchMedia();
+
+  mm.add('(min-width: 1024px)', () => {
+    fitHero();
+    let current = -1;
+    const END = '+=' + (W.length * 85) + '%';
+
+    const st = ScrollTrigger.create({
+      trigger:'#hero', start:'top top', end:END,
+      pin:'.hero-pin', pinSpacing:true, scrub:1,
+      onUpdate(self){
+        const p = self.progress;
+        gsap.set('#progFill', { scaleX:p });
+        $('#progPct').textContent = Math.round(p * 100);
+
+        const i = Math.min(W.length - 1, Math.floor(p * W.length * 1.0001));
+        if (i !== current){ current = i; showWord(i); }
+
+        const local = (p * W.length) - i;
+        gsap.set(words[i], { xPercent:-1.4 * local });
+        const bar = steps[i] && steps[i].querySelector('.step-bar');
+        if (bar) bar.style.transform = 'scaleX(' + (0.18 + 0.82 * local) + ')';
+      }
+    });
+    showWord(0, .01);
+
+    const photoTw = gsap.to('#heroPhoto', {
+      scale:1.14, ease:'none',
+      scrollTrigger:{ trigger:'#hero', start:'top top', end:END, scrub:1 }
+    });
+
+    const outro = gsap.to('.hero-pin .relative.z-\\[2\\]', {
+      y:-46, opacity:.12, ease:'none',
+      scrollTrigger:{ trigger:'#hero', start:'bottom bottom-=' + (window.innerHeight * .55), end:END, scrub:1 }
+    });
+
+    return () => {
+      st.kill();
+      [photoTw, outro].forEach(t => { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); });
+      gsap.set(words, { clearProps:'xPercent' });
+    };
+  });
+
+  mm.add('(max-width: 1023px)', () => {
+    fitHero();
+    let i = 0;
+    showWord(0, .01);
+    const tick = setInterval(() => {
+      i = (i + 1) % W.length;
+      showWord(i);
+      gsap.to('#progFill', { scaleX:(i+1)/W.length, duration:.7, ease:'power2.out' });
+      $('#progPct').textContent = Math.round(((i+1)/W.length)*100);
+    }, 3400);
+
+    $('#heroHint').textContent = 'ДООШ ГҮЙЛГЭЖ ҮЗНЭ ҮҮ';
+
+    return () => clearInterval(tick);
+  });
+
+  ScrollTrigger.create({
+    start:'top -60',
+    onToggle(self){
+      $('#navCap').classList.toggle('h-14', !self.isActive);
+      $('#navCap').classList.toggle('h-12', self.isActive);
+      $('#navCap').classList.toggle('max-w-[940px]', !self.isActive);
+      $('#navCap').classList.toggle('max-w-[720px]', self.isActive);
+      $('#navCap').classList.toggle('bg-base/55', !self.isActive);
+      $('#navCap').classList.toggle('bg-base/85', self.isActive);
+    }
+  });
+
+  CONFIG.nav.forEach(n => {
+    const sec = $(n.href); if (!sec) return;
+    const link = $(`[data-navlink="${n.href}"]`); if (!link) return;
+    ScrollTrigger.create({
+      trigger:sec, start:'top 45%', end:'bottom 45%',
+      onToggle(self){
+        link.classList.toggle('text-bone', self.isActive);
+        link.classList.toggle('text-mid', !self.isActive);
+        const dot = $('.nav-dot', link); if (dot) dot.style.opacity = self.isActive ? '1' : '0';
+      }
+    });
+  });
+
+  gsap.to('#giant', {
+    yPercent:6, ease:'none',
+    scrollTrigger:{ trigger:'#footer', start:'top bottom', end:'bottom bottom', scrub:1 }
+  });
+
+  mm.add('(hover: hover) and (pointer: fine)', () => {
+    document.body.classList.add('cur-on');
+    const ring = $('#cur'), dot = $('#curDot');
+    const rx = gsap.quickTo(ring,'x',{duration:.5,ease:'power3'});
+    const ry = gsap.quickTo(ring,'y',{duration:.5,ease:'power3'});
+    const dx = gsap.quickTo(dot,'x',{duration:.12,ease:'power2'});
+    const dy = gsap.quickTo(dot,'y',{duration:.12,ease:'power2'});
+    const move = e => { rx(e.clientX); ry(e.clientY); dx(e.clientX); dy(e.clientY); };
+    const over = e => ring.classList.toggle('grow', !!e.target.closest('a,button,.chip,.prj,.card'));
+    window.addEventListener('pointermove', move, { passive:true });
+    window.addEventListener('pointerover', over, { passive:true });
+    return () => {
+      document.body.classList.remove('cur-on');
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerover', over);
+    };
+  });
+
+  ScrollTrigger.refresh();
+}
+
+/* ── ГАРЧГИЙН ХЭМЖЭЭГ ХАРИУЦАХ ХЭСЭГ (анимацаас тусдаа) ── */
+function watchHeroSize(){
+  fitHero();
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(() => {
+      fitHero();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  }
+  let lastW = window.innerWidth, rTimer;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    clearTimeout(rTimer);
+    rTimer = setTimeout(() => {
+      fitHero();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }, 180);
+  }, { passive:true });
+}
+
+/* ── ЭХЛҮҮЛЭХ ── */
+function boot(){
+  watchHeroSize();
+  if (document.hidden){
+    revealAll();
+    killPreloader();
+    document.addEventListener('visibilitychange', function once(){
+      if (document.hidden) return;
+      document.removeEventListener('visibilitychange', once);
+      initAnimations();
+    });
     return;
   }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((en, i) => {
-      if (!en.isIntersecting) return;
-      setTimeout(() => en.target.classList.add('on'), i * 70);
-      io.unobserve(en.target);
-    });
-  }, { rootMargin:'0px 0px -8% 0px' });
-  els.forEach(e => io.observe(e));
+  initAnimations();
+}
 
-  /* Аюулгүйн тор: 2 секундын дараа юу ч нуугдаагүй байх ёстой */
-  setTimeout(() => els.forEach(e => e.classList.add('on')), 2000);
-})();
+if (document.readyState === 'complete') boot();
+else window.addEventListener('load', boot);
 </script>
 </body>
 </html>
