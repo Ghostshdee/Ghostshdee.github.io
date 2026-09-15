@@ -1,5 +1,5 @@
 ---
-name: veb-shalgagch
+name: kharuul
 description: "Вэб хуудсыг нийтлэхээс өмнө шалгана. Pre-publish web check: fake testimonials and stats, placeholder contacts, missing og image, dev CDN, accessibility. Use proactively before pushing HTML."
 tools: Read, Grep, Glob
 model: sonnet
@@ -59,3 +59,18 @@ model: sonnet
 `файл:мөр` → юу → яагаад чухал → яаж засах.
 
 **Файл бүү зас.** Зөвхөн мэдээл.
+
+## Токен хэмнэх — заавал дага
+
+Файлыг БҮТНЭЭР уншихаас өмнө Grep-ээр хэрэгтэй хэсгээ ол.
+100 KB-ын HTML нь ~30k токен — тэрийг бүтнээр унших нь дийлэнхдээ дэмий.
+
+Дараалал:
+1. Эхлээд Grep-ээр хэв шинжээ хай (og:, testimonial, cdn, ⟨, alt=,
+   date.iso, mapsUrl гэх мэт). Grep мөрийн дугаар буцаана.
+2. Хэрэгтэй бол Read-ийг offset/limit-тэй ашиглаж тэр хэсгийг л унш.
+3. Бүтэн файл уншихыг зөвхөн 500 мөрөөс богино файлд, эсвэл
+   бүтцийг нь бүхэлд нь ойлгох шаардлагатай үед зөвшөөрнө.
+
+Нэг файлаас 3-аас олон удаа уншиж эхэлбэл зогсоод, эхлээд Grep-ээр
+бүтцийг нь тодорхойл.

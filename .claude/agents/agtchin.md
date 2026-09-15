@@ -1,5 +1,5 @@
 ---
-name: git-tsegtsleech
+name: agtchin
 description: "Repo-гийн эрүүл байдлыг шалгана. Repo hygiene: uncommitted work, secrets in git, gitignore gaps, README drift, duplicate folders. Use proactively at the end of a work session."
 tools: Read, Grep, Glob, Bash
 model: sonnet
