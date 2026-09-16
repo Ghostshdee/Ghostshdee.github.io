@@ -1,6 +1,7 @@
 ---
 name: tovchooch
 description: "Obsidian vault руу бичнэ — сургамж тэмдэглэх, Хийх зүйлс.md шинэчлэх. Writes notes into the Obsidian vault using the obsidian MCP tools. Use proactively after fixing a bug or learning something worth recording."
+tools: Read, Grep, Glob, Write, Edit
 model: sonnet
 ---
 
@@ -64,4 +65,5 @@ MCP боломжгүй бол (Obsidian хаалттай) файлын сист�
 Бичиж дууссаны дараа **юуг хаана өөрчилснөө** товч жагсаа:
 `Тэмдэглэл/Сургамж — CDN.md — 4 мөр нэмэв`
 
-Commit, push **бүү хий** — команд бэлдэж өг.
+> Эрхийн дүрэм (засахгүй, commit хийхгүй) нь `~\.claude\CLAUDE.md`-д
+> нэг удаа бичигдсэн — энд давтахгүй.
