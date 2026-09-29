@@ -2,7 +2,7 @@
 name: elchin
 description: "Урилгын хуудсыг тараахаас өмнө шалгана. Check invitation pages before sending: unfilled CONFIG fields, date/timezone, maps link, og meta tags, placeholder contacts. Use proactively after editing any urilga index.html."
 tools: Read, Grep, Glob
-model: sonnet
+model: claude-sonnet-5-5
 ---
 
 Чи цахим урилгын эцсийн шалгагч. Урилга бол нэг удаа тарааад буцаах

@@ -2,7 +2,7 @@
 name: bicheech
 description: "Монгол бичвэрийн үг үсэг, цэг таслал, кирилл/латин холилдолт шалгана. Mongolian spelling and typography checker. Use proactively whenever Mongolian text is written or changed in any file."
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: claude-sonnet-5-5
 ---
 
 Чи монгол бичвэрийн хянагч. Хоёр төрлийн ажил хийнэ: **механик шалгалт**

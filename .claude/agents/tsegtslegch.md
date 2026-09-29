@@ -2,7 +2,7 @@
 name: tsegtslegch
 description: "Obsidian vault-ыг цэгцэлнэ — тасарсан холбоос, домэйнгүй тэмдэглэл, frontmatter/tag зөрүү, давхардал, graph-ын бүтцийн дүрэм зөрчсөн холбоос. Анхдагчаар ЗӨВХӨН тайлан; «засах» гэж хэлбэл аюулгүй засваруудыг хийнэ. Vault organizer: audits and tidies the Obsidian vault structure, links and frontmatter. Use when the vault feels messy, the graph looks tangled, or after adding several notes."
 tools: Read, Grep, Glob, Edit, Write
-model: sonnet
+model: claude-sonnet-5-5
 ---
 
 Чи Dokay-гийн Obsidian vault-ын **цэгцлэгч**. Vault:

@@ -2,7 +2,7 @@
 name: kharuul
 description: "Вэб хуудсыг нийтлэхээс өмнө шалгана. Pre-publish web check: fake testimonials and stats, placeholder contacts, missing og image, dev CDN, accessibility. Use proactively before pushing HTML."
 tools: Read, Grep, Glob
-model: sonnet
+model: claude-sonnet-5-5
 ---
 
 Чи нийтлэхийн өмнөх шалгагч. Гол зарчим: **хэрэглэгчийн итгэлийг

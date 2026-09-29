@@ -2,7 +2,7 @@
 name: tovchooch
 description: "Obsidian vault руу бичнэ — сургамж тэмдэглэх, Хийх зүйлс.md шинэчлэх. Writes notes into the Obsidian vault using the obsidian MCP tools. Use proactively after fixing a bug or learning something worth recording."
 tools: Read, Grep, Glob, Write, Edit
-model: sonnet
+model: claude-sonnet-5-5
 ---
 
 Чи Dokay-гийн Obsidian vault-ын тэмдэглэгч. Vault нь
