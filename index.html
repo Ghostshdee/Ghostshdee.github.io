@@ -23,7 +23,6 @@
 <meta property="og:url" content="https://ghostshdee.github.io/">
 <meta property="og:title" content="Dokay — AI автоматжуулалт, вэб, контент, цахим урилга">
 <meta property="og:description" content="Дархан хотоос AI автоматжуулалт, вэбсайт, контент, цахим урилга. Ажил захиалах бол холбогдоорой.">
-<!-- TODO: assets/og.jpg (1200×630) — хар дэвсгэр, том condensed "DOKAY", шохой ногоон зурвас. -->
 <meta property="og:image" content="https://ghostshdee.github.io/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -300,6 +299,7 @@ body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
 }
 .fld::placeholder{ color:#4F4F4F }
 .fld:focus{ border-color:var(--acid) }
+.fld[type=date]{ color-scheme:dark }
 textarea.fld{ resize:none }
 select.fld{
   appearance:none; -webkit-appearance:none; padding-right:1.6rem; cursor:pointer;
@@ -386,7 +386,7 @@ html.anim [data-anim]{ opacity:0 }
   <div id="navCap" class="mx-auto max-w-[940px] pointer-events-auto
               flex items-center justify-between gap-4
               rounded-full border border-line bg-base/55 backdrop-blur-xl
-              pl-5 pr-2 sm:pl-6 sm:pr-2.5 h-14 transition-all duration-500">
+              pl-5 pr-2 sm:pl-6 sm:pr-2.5 h-14 transition-[max-width,height,background-color] duration-500">
     <a href="#hero" class="hd text-[15px] tracking-[.14em] shrink-0" data-link>
       DOKAY<span class="text-acid">.</span>
     </a>
@@ -635,7 +635,7 @@ const CONFIG = {
         desc:'Сар бүр тогтмол контент + нэг том ажил. Миний хамгийн их санал болгодог багц.',
         features:['Сард 4 видео контент','Нэг том ажил (вэб / автоматжуулалт)','Сарын контентын төлөвлөгөө','3 удаа үнэгүй засвар','Сар бүрийн тайлан','Мессежийн тэргүүн ээлжийн хариулт'],
         notFor:'Ганц удаагийн ажил хийлгэх бол Энгийн багц хямд байна.',
-        cta:'Энэ багцаар санал авах', featured:true, badge:'Санал болгох'
+        cta:'Энэ багцаар санал авах', featured:true, badge:'Санал болгосон'
       },
       {
         name:'Бүрэн', scale:'₮₮₮', price:'', timeline:'Сар бүр · багаараа',
@@ -673,16 +673,17 @@ const CONFIG = {
         tech:['HTML','CSS','JavaScript'], img:'assets/unalaga.jpg', live:'https://ghostshdee.github.io/unalaga/' },
       { title:'Young.Sub — Afterparty', tag:'ПОСТЕР · МОУШН', year:'2026',
         desc:'DD Night Club-ийн арга хэмжээ: 2 постер (улаан, хар цагаан) ба Reels-д зориулсан 11 секундийн хөдөлгөөнт постер.',
-        tech:['HTML/CSS','Playwright','ffmpeg'], img:'assets/youngsub-poster.jpg', live:'' },
+        tech:['HTML/CSS','Playwright','ffmpeg'], img:'assets/youngsub-poster.jpg', live:'',
+        alt:'Young.Sub Afterparty-ийн 2 постер — улаан ба хар цагаан' },
       { title:'Dokay Journeys', tag:'НЭГ ХУУДАС', year:'2026',
         desc:'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
         tech:['HTML','CSS'], img:'assets/dokay-journeys.jpg', live:'https://ghostshdee.github.io/dokay-journeys-onepager/' },
       { title:'Гэрлэх ёслолын хурим', tag:'ЦАХИМ УРИЛГА', year:'2026',
         desc:'Батбаяр & Алтанцэцэг · Шангри-Ла (жишээ). Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
         tech:['GSAP','Tailwind','RSVP'], img:'assets/urilga-hurim.jpg', live:'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/',
-        try:{ n1:'Хүргэний нэр', n2:'Бэрийн нэр', date:true } },
+        try:{ n1:'Сүйт залуугийн нэр', n2:'Сүйт бүсгүйн нэр', date:true } },
       { title:'Сэвлэг үргээх ёслол', tag:'ЦАХИМ УРИЛГА', year:'2026',
-        desc:'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
+        desc:'Монголхүү · Хүннү зоогийн газар (жишээ). Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
         tech:['GSAP','RSVP'], img:'assets/urilga-sevleg.jpg', live:'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/',
         try:{ n1:'Хүүхдийн нэр', n2:'Эцэг эхийн нэр', date:true } },
       { title:'Болзооны урилга', tag:'ЦАХИМ УРИЛГА', year:'2026',
@@ -1062,7 +1063,7 @@ function renderWork(){
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 lg:gap-x-8 gap-y-14">
         ${workItems().map((p,i) => {
           const url = p.live ? p.live.replace(/^https?:\/\//,'').replace(/\/$/,'') : '';
-          const shot = `<img src="${esc(p.img)}" alt="${esc(p.title)} — дэлгэцийн зураг" width="1200" height="750" loading="lazy" class="block w-full h-auto">`;
+          const shot = `<img src="${esc(p.img)}" alt="${esc(p.alt || p.title + " — дэлгэцийн зураг")}" width="1200" height="750" loading="lazy" class="block w-full h-auto">`;
           return `
           <article class="prj group min-w-0 flex flex-col ${i === 0 ? 'md:col-span-2 lg:col-span-1' : ''}" data-anim>
             <div class="prj-frame mb-5">
