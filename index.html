@@ -23,15 +23,23 @@
 <meta property="og:url" content="https://ghostshdee.github.io/">
 <meta property="og:title" content="Dokay — AI автоматжуулалт, вэб, контент, цахим урилга">
 <meta property="og:description" content="Дархан хотоос AI автоматжуулалт, вэбсайт, контент, цахим урилга. Ажил захиалах бол холбогдоорой.">
-<meta property="og:image" content="https://ghostshdee.github.io/assets/og.jpg">
+<meta property="og:image" content="https://ghostshdee.github.io/assets/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dokay лого — дээр нь тооно, хажуудаа DO ба KAY бичигтэй изометр шоо">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dokay — AI автоматжуулалт, вэб, контент, цахим урилга">
 <meta name="twitter:description" content="Дархан хотоос AI автоматжуулалт, вэбсайт, контент, цахим урилга.">
-<meta name="twitter:image" content="https://ghostshdee.github.io/assets/og.jpg">
+<meta name="twitter:image" content="https://ghostshdee.github.io/assets/og.jpg?v=2">
+<meta name="twitter:image:alt" content="Dokay лого — дээр нь тооно, хажуудаа DO ба KAY бичигтэй изометр шоо">
+<!-- og.jpg-г солих бүрд ?v=-г нэмэгдүүл — Facebook хуучин зургаа кэшэлдэг -->
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0A0A'/><text y='74' x='50' text-anchor='middle' font-size='70' font-family='Impact,sans-serif' fill='%23C6F24E'>D</text></svg>">
+<!-- DOKAY лого багц (2026-10-11). Сайтын үндэст favicon.ico ТАВИХГҮЙ: дэд урилгууд өөрийн favicon-гүй
+     тул үндэст тавивал тэдний таб дээр Dokay лого гарч ирнэ. Тиймээс бүгд assets/brand/ дотор. -->
+<link rel="icon" href="assets/brand/favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="assets/brand/site.webmanifest">
 
 <!-- ФОНТ
      Oswald    → хэсгийн гарчиг, нав, шошго (condensed, кирилл бүрэн)
@@ -285,7 +293,9 @@ body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
   font-variation-settings:'wdth' 62,'wght' 900;
   font-weight:900; line-height:.72; letter-spacing:-.03em;
   font-size:clamp(5.5rem,25.5vw,21rem);
-  background:linear-gradient(180deg,#4A4A4A 0%,#1C1C1C 62%,#0A0A0A 100%);
+  /* хаан 10-11: «зүүнээс баруун, 2-р хувилбар» — DO ногоон → KAY цагаан, логоны DO|KAY өнгө
+     (өмнө нь саарал #4A4A4A→#0A0A0A, дээрээс доош) */
+  background:linear-gradient(90deg,#C6F24E 0%,#C6F24E 30%,#EDEAE4 62%,#EDEAE4 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; -webkit-text-fill-color:transparent;
   user-select:none;
@@ -387,8 +397,10 @@ html.anim [data-anim]{ opacity:0 }
               flex items-center justify-between gap-4
               rounded-full border border-line bg-base/55 backdrop-blur-xl
               pl-5 pr-2 sm:pl-6 sm:pr-2.5 h-14 transition-[max-width,height,background-color] duration-500">
-    <a href="#hero" class="hd text-[15px] tracking-[.14em] shrink-0" data-link>
-      DOKAY<span class="text-acid">.</span>
+    <a href="#hero" class="hd text-[15px] tracking-[.14em] shrink-0 flex items-center gap-2.5 -ml-1" data-link>
+      <!-- Тооно — DOKAY лого багцын хавтгай хувилбар (зураас 1.3× зузаан, 30px-д тод) -->
+      <svg viewBox="-67 -67 134 134" width="30" height="30" class="shrink-0" aria-hidden="true"><g fill="none" stroke-linecap="round"><g stroke="#C6F24E" stroke-width="4.16"><line x1="52" y1="0" x2="64" y2="0"/><line x1="50.23" y1="13.46" x2="57.96" y2="15.53"/><line x1="45.03" y1="26" x2="55.43" y2="32"/><line x1="36.77" y1="36.77" x2="42.43" y2="42.43"/><line x1="26" y1="45.03" x2="32" y2="55.43"/><line x1="13.46" y1="50.23" x2="15.53" y2="57.96"/><line x1="0" y1="52" x2="0" y2="64"/><line x1="-13.46" y1="50.23" x2="-15.53" y2="57.96"/><line x1="-26" y1="45.03" x2="-32" y2="55.43"/><line x1="-36.77" y1="36.77" x2="-42.43" y2="42.43"/><line x1="-45.03" y1="26" x2="-55.43" y2="32"/><line x1="-50.23" y1="13.46" x2="-57.96" y2="15.53"/><line x1="-52" y1="0" x2="-64" y2="0"/><line x1="-50.23" y1="-13.46" x2="-57.96" y2="-15.53"/><line x1="-45.03" y1="-26" x2="-55.43" y2="-32"/><line x1="-36.77" y1="-36.77" x2="-42.43" y2="-42.43"/><line x1="-26" y1="-45.03" x2="-32" y2="-55.43"/><line x1="-13.46" y1="-50.23" x2="-15.53" y2="-57.96"/><line x1="0" y1="-52" x2="0" y2="-64"/><line x1="13.46" y1="-50.23" x2="15.53" y2="-57.96"/><line x1="26" y1="-45.03" x2="32" y2="-55.43"/><line x1="36.77" y1="-36.77" x2="42.43" y2="-42.43"/><line x1="45.03" y1="-26" x2="55.43" y2="-32"/><line x1="50.23" y1="-13.46" x2="57.96" y2="-15.53"/></g><circle r="44" stroke="#EDEAE4" stroke-width="9.1"/><g stroke="#EDEAE4" stroke-width="4.42"><g transform="rotate(0)"><line x1="15" y1="-4.2" x2="41" y2="-4.2"/><line x1="15" y1="4.2" x2="41" y2="4.2"/></g><g transform="rotate(90)"><line x1="15" y1="-4.2" x2="41" y2="-4.2"/><line x1="15" y1="4.2" x2="41" y2="4.2"/></g><g transform="rotate(180)"><line x1="15" y1="-4.2" x2="41" y2="-4.2"/><line x1="15" y1="4.2" x2="41" y2="4.2"/></g><g transform="rotate(270)"><line x1="15" y1="-4.2" x2="41" y2="-4.2"/><line x1="15" y1="4.2" x2="41" y2="4.2"/></g></g><circle r="14" stroke="#C6F24E" stroke-width="6.5"/></g></svg>
+      <span><span class="text-acid">DO</span>KAY</span>
     </a>
     <nav id="navLinks" class="hidden md:flex items-center gap-1" aria-label="Үндсэн цэс"></nav>
     <a id="navCta" href="#contact" data-link
@@ -501,7 +513,8 @@ const CONFIG = {
     title:       'Dokay — AI автоматжуулалт, вэб, контент, цахим урилга',
     description: 'Жаргалсайхан Дөлгөөн (Dokay). Дархан хотоос AI автоматжуулалт, вэбсайт хөгжүүлэлт, AI контент, цахим урилга. Ажил захиалах бол холбогдоорой.',
     canonical:   'https://ghostshdee.github.io/',
-    ogImage:     'https://ghostshdee.github.io/assets/og.jpg'
+    ogImage:     'https://ghostshdee.github.io/assets/og.jpg?v=2',
+    logo:        'https://ghostshdee.github.io/assets/brand/icon-512.png'
   },
 
   /* ── ХУВИЙН МЭДЭЭЛЭЛ ─────────────────────────────────────────────── */
@@ -1390,6 +1403,7 @@ function injectSchema(){
     {
       '@type':'ProfessionalService', '@id': seo.canonical + '#service',
       name: seo.title, description: seo.description, url: seo.canonical,
+      logo: seo.logo, image: seo.ogImage,
       telephone: c.phone, email: c.email,
       areaServed: { '@type':'City', name:'Дархан' }, address: addr,
       sameAs: [c.facebook, c.instagram], priceRange: '₮₮',
