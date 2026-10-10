@@ -210,18 +210,23 @@ body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
 .srv-arrow{ transform:translate(-12px,12px); opacity:0; transition:all .55s cubic-bezier(.16,1,.3,1) }
 
 /* ── ТӨСЛИЙН КАРТ ─────────────────────────────────────────────────── */
-.prj-media{ overflow:hidden; position:relative }
-.prj-media > .inner{ transition:transform 1.1s cubic-bezier(.16,1,.3,1) }
-.prj-meta{
-  transition:opacity .55s ease,transform .55s cubic-bezier(.16,1,.3,1);
-  opacity:0; transform:translateY(14px);
+/* Дэлгэцийн зургийг хөтчийн цонхонд хийж, энэ хуудаснаас тод ялгана.
+   Зураг жинхэнэ 16:10 харьцаагаар — тайрахгүй, томруулахгүй, шошго зураг
+   дээр давхцахгүй (2026-10-10, хаан: «өөрөө дотроо давхцаад толгой эргүүлнэ»). */
+.prj-frame{
+  display:block; border:1px solid rgba(255,255,255,.10); border-radius:14px;
+  overflow:hidden; background:#111; transition:border-color .35s ease;
 }
+.prj-bar{
+  display:flex; align-items:center; gap:6px; height:30px; padding:0 12px;
+  border-bottom:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.035);
+}
+.prj-bar i{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.18); flex:none }
+.prj-url{ margin-left:8px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 @media (hover:hover){
-  .prj:hover .prj-media > .inner{ transform:scale(1.07) }
-  .prj:hover .prj-meta{ opacity:1; transform:translateY(0) }
+  .prj:hover .prj-frame{ border-color:var(--acid-line) }
   .prj:hover .prj-title{ color:var(--acid) }
 }
-@media (hover:none){ .prj-meta{ opacity:1; transform:none } }
 
 /* ── КАРТ (багц, холбоо барих) ───────────────────────────────────── */
 .card{
@@ -633,6 +638,7 @@ const CONFIG = {
   work: {
     label: '(06) АЖЛУУД',
     title: 'Сүүлд{{ хийсэн}}',
+    /* merged:true — энэ нүүр хуудастай нэгдсэн, жагсаалтад гарахгүй */
     items: [
       { title:'Dokay — Хувийн portfolio', tag:'ВЭБСАЙТ', year:'2026',
         desc:'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
@@ -995,36 +1001,39 @@ function renderPricing(){
 }
 
 /* ── 7 · АЖЛУУД ── */
+/* Энэ нүүр хуудастай нэгдсэн (merged) сайтыг жагсаалтад харуулахгүй —
+   эс бөгөөс хуудас өөрийгөө дотроо давтан харуулдаг (2026-10-10). */
+const workItems = () => CONFIG.work.items.filter(p => !p.merged);
+
 function renderWork(){
   const w = CONFIG.work;
   $('#work').innerHTML = `
     <div class="max-w-shell mx-auto px-5 sm:px-8">
       ${secHead(w.label, w.title)}
-      <div class="grid md:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-14 sm:gap-y-24">
-        ${w.items.map((p,i) => `
-          <article class="prj group ${i % 2 ? 'md:mt-28' : ''}" data-anim>
-            <div class="prj-media aspect-[4/3] mb-5">
-              <div class="inner w-full h-full">
-                <img src="${esc(p.img)}" alt="${esc(p.title)} — дэлгэцийн зураг" loading="lazy" class="w-full h-full object-cover">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 lg:gap-x-8 gap-y-14">
+        ${workItems().map((p,i) => {
+          const url = p.live ? p.live.replace(/^https?:\/\//,'').replace(/\/$/,'') : '';
+          const shot = `<img src="${esc(p.img)}" alt="${esc(p.title)} — дэлгэцийн зураг" width="1200" height="750" loading="lazy" class="block w-full h-auto">`;
+          return `
+          <article class="prj group min-w-0 flex flex-col ${i === 0 ? 'md:col-span-2 lg:col-span-1' : ''}" data-anim>
+            <div class="prj-frame mb-5">
+              <div class="prj-bar" aria-hidden="true"><i></i><i></i><i></i>
+                <span class="prj-url mn text-[10px] text-dim">${esc(url)}</span>
               </div>
-              <span class="absolute top-4 left-4 z-[4] mn text-[10px] tracking-[.18em] text-bone bg-base/80 border border-line px-2.5 py-1">${esc(p.tag)}</span>
+              ${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">${shot}</a>` : shot}
             </div>
 
-            <div class="flex items-baseline justify-between gap-5 mb-3">
-              <h3 class="prj-title hd text-[1.35rem] sm:text-[1.75rem] leading-tight transition-colors">${esc(p.title)}</h3>
+            <div class="flex items-center justify-between gap-5 mb-2.5">
+              <span class="mn text-[10px] tracking-[.18em] text-acid">${esc(p.tag)}</span>
               <span class="mn text-[11px] text-dim shrink-0">${esc(p.year)}</span>
             </div>
-
-            <div class="prj-meta">
-              <p class="text-mid text-[14px] leading-[1.75] mb-4 max-w-[46ch]">${esc(p.desc)}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                ${p.tech.map(t => `<span class="mn text-[10px] tracking-wider text-dim border border-line px-2.5 py-1">${esc(t)}</span>`).join('')}
-              </div>
-              ${p.live
-                ? `<a href="${esc(p.live)}" target="_blank" rel="noopener" class="mn text-[11px] tracking-[.16em] text-acid hover:underline underline-offset-4">ҮЗЭХ ↗</a>`
-                : (p.merged ? `<p class="mn text-[10.5px] text-dim">→ Энэ сайт одоо энэ нүүр хуудас болон нэгдсэн</p>` : '')}
+            <h3 class="prj-title hd text-[1.35rem] sm:text-[1.6rem] leading-tight transition-colors mb-3">${esc(p.title)}</h3>
+            <p class="text-mid text-[14px] leading-[1.75] mb-4 max-w-[46ch]">${esc(p.desc)}</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              ${p.tech.map(t => `<span class="mn text-[10px] tracking-wider text-dim border border-line px-2.5 py-1">${esc(t)}</span>`).join('')}
             </div>
-          </article>`).join('')}
+            ${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener" aria-label="${esc(p.title)} — сайтыг шинэ цонхонд үзэх" class="mt-auto self-start mn text-[11px] tracking-[.16em] text-acid hover:underline underline-offset-4">ҮЗЭХ ↗</a>` : ''}
+          </article>`; }).join('')}
       </div>
     </div>`;
 }
@@ -1331,7 +1340,7 @@ function injectSchema(){
     },
     {
       '@type':'ItemList', name: seo.title + ' — ажлууд',
-      itemListElement: CONFIG.work.items.map((w,i) => ({
+      itemListElement: workItems().map((w,i) => ({
         '@type':'ListItem', position:i+1, name:w.title, url: w.live || seo.canonical
       }))
     }
