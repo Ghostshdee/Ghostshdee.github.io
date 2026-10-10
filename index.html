@@ -689,6 +689,7 @@ const CONFIG = {
       { title:'Болзооны урилга', tag:'ЦАХИМ УРИЛГА', year:'2026',
         desc:'«Надтай болзоонд явах уу?» — «Үгүй» товч зугтдаг, «Тийм» дарахад өдөр, газраа сонгоод мессеж илгээнэ.',
         tech:['HTML','CSS','JavaScript'], img:'assets/urilga-bolzoo.jpg', live:'https://ghostshdee.github.io/urilga-bolzoo/',
+        draft:true,   /* Pages асаагүй (404) — хаан асаасны дараа энэ мөрийг ав (10-10) */
         try:{ n1:'Түүний нэр', n2:'Таны нэр' } }
     ]
   },
@@ -1053,7 +1054,7 @@ function renderPricing(){
 /* ── 7 · АЖЛУУД ── */
 /* Энэ нүүр хуудастай нэгдсэн (merged) сайтыг жагсаалтад харуулахгүй —
    эс бөгөөс хуудас өөрийгөө дотроо давтан харуулдаг (2026-10-10). */
-const workItems = () => CONFIG.work.items.filter(p => !p.merged);
+const workItems = () => CONFIG.work.items.filter(p => !p.merged && !p.draft);   /* draft — түр нуусан */
 
 function renderWork(){
   const w = CONFIG.work;
