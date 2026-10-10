@@ -392,7 +392,7 @@ html.anim [data-anim]{ opacity:0 }
     </a>
     <nav id="navLinks" class="hidden md:flex items-center gap-1" aria-label="Үндсэн цэс"></nav>
     <a id="navCta" href="#contact" data-link
-       class="hd text-[12.5px] tracking-[.14em] rounded-full bg-bone text-base px-5 h-10 hidden sm:flex items-center hover:bg-acid transition-colors">
+       class="hd text-[12.5px] tracking-[.14em] rounded-full bg-bone text-base px-4 sm:px-5 h-10 flex items-center hover:bg-acid transition-colors">
       ХОЛБОГДОХ
     </a>
     <button id="burger" class="md:hidden w-10 h-10 grid place-items-center -mr-1" aria-label="Цэс" aria-expanded="false" aria-controls="mMenu">
@@ -444,7 +444,7 @@ html.anim [data-anim]{ opacity:0 }
         <div class="mt-6 sm:mt-8 shrink-0">
           <p class="mn text-[10.5px] sm:text-[11px] tracking-[.22em] text-acid flex items-center gap-2.5 mb-3">
             <span class="inline-block animate-bounce">↓</span>
-            <span id="heroHint">SCROLL TO SCRUB TIMELINE</span>
+            <span id="heroHint">ДООШ ГҮЙЛГЭЖ ҮЗНЭ ҮҮ</span>
           </p>
           <div class="prog"><i id="progFill"></i></div>
         </div>
@@ -542,7 +542,7 @@ const CONFIG = {
   /* ── 1 · HERO ─────────────────────────────────────────────────────── */
   hero: {
     photo: 'assets/dolgoon-flag.webp',      /* баруун талын зураг (820×1093); хоосон бол градиент */
-    hint: 'SCROLL TO SCRUB TIMELINE',
+    hint: 'ДООШ ГҮЙЛГЭЖ ҮЗНЭ ҮҮ',
     words: [
       { text:'AI АВТОМАТЖУУЛАЛТ',
         desc:'n8n, Make.com дээр урсгал зурж, давтагддаг ажлыг чинь бүрмөсөн авч хаяна. Мессеж, захиалга, тайлан — өөрөө өөрийгөө хийдэг болно.' },
@@ -632,10 +632,10 @@ const CONFIG = {
       {
         name:'Стандарт', scale:'₮₮', price:'', timeline:'Сар бүр тогтмол',
         for:'Тогтмол контенттой байхыг хүсэж буй бизнест',
-        desc:'Сар бүр тогтмол контент + нэг том ажил. Хамгийн олон бизнес үүнийг сонгодог.',
+        desc:'Сар бүр тогтмол контент + нэг том ажил. Миний хамгийн их санал болгодог багц.',
         features:['Сард 4 видео контент','Нэг том ажил (вэб / автоматжуулалт)','Сарын контентын төлөвлөгөө','3 удаа үнэгүй засвар','Сар бүрийн тайлан','Мессежийн тэргүүн ээлжийн хариулт'],
         notFor:'Ганц удаагийн ажил хийлгэх бол Энгийн багц хямд байна.',
-        cta:'Энэ багцаар санал авах', featured:true, badge:'Ихэнх нь үүнийг сонгодог'
+        cta:'Энэ багцаар санал авах', featured:true, badge:'Санал болгох'
       },
       {
         name:'Бүрэн', scale:'₮₮₮', price:'', timeline:'Сар бүр · багаараа',
@@ -782,7 +782,7 @@ const icon = (name, cls='w-5 h-5', sw=1.6) =>
 function renderNav(){
   $('#navLinks').innerHTML = CONFIG.nav.map(n => `
     <a href="${n.href}" data-link data-navlink="${n.href}"
-       class="relative hd text-[12px] tracking-[.12em] text-mid hover:text-bone transition-colors px-3 py-2">
+       class="relative hd text-[12px] tracking-[.12em] text-mid hover:text-bone transition-colors px-3 py-2 whitespace-nowrap">
       ${esc(n.label)}
       <i class="nav-dot absolute left-1/2 -translate-x-1/2 bottom-0.5 w-1 h-1 rounded-full bg-acid opacity-0 transition-opacity duration-300"></i>
     </a>`).join('');
@@ -1479,7 +1479,7 @@ function initAnimations(){
   }
 
   intro
-    .from('#navCap', { y:-24, opacity:0, duration:.8, ease:'power3.out' }, num ? '+=.25' : 0)
+    .fromTo('#navCap', { y:-24, opacity:0 }, { y:0, opacity:1, duration:.8, ease:'power3.out' }, num ? '+=.25' : 0)   /* from() төгсгөлийн утгыг буруу уншиж цэс үл үзэгдэх болдог байв (10-10) */
     .from('#heroStage .hero-word[data-word="0"] .ch', {
       yPercent:112, opacity:0, duration:1.05, ease:'power4.out', stagger:.022
     }, '<.05')
@@ -1571,7 +1571,7 @@ function initAnimations(){
       $('#progPct').textContent = Math.round(((i+1)/W.length)*100);
     }, 3400);
 
-    $('#heroHint').textContent = 'ДООШ ГҮЙЛГЭЖ ҮЗНЭ ҮҮ';
+    $('#heroHint').textContent = CONFIG.hero.hint;
 
     return () => clearInterval(tick);
   });
@@ -1582,7 +1582,7 @@ function initAnimations(){
       $('#navCap').classList.toggle('h-14', !self.isActive);
       $('#navCap').classList.toggle('h-12', self.isActive);
       $('#navCap').classList.toggle('max-w-[940px]', !self.isActive);
-      $('#navCap').classList.toggle('max-w-[720px]', self.isActive);
+      $('#navCap').classList.toggle('max-w-[760px]', self.isActive);
       $('#navCap').classList.toggle('bg-base/55', !self.isActive);
       $('#navCap').classList.toggle('bg-base/85', self.isActive);
     }
