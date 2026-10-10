@@ -659,7 +659,8 @@ const CONFIG = {
   work: {
     label: '(06) АЖЛУУД',
     title: 'Сүүлд{{ хийсэн}}',
-    /* merged:true — энэ нүүр хуудастай нэгдсэн, жагсаалтад гарахгүй */
+    /* merged:true — энэ нүүр хуудастай нэгдсэн, жагсаалтад гарахгүй
+       try — «Өөрийн нэрээр үзэх» маягт: урилгыг ?n1=&n2=&d= -ээр нээнэ (#102) */
     items: [
       { title:'Dokay — Хувийн portfolio', tag:'ВЭБСАЙТ', year:'2026',
         desc:'Кинематик portfolio. Скролл хийхэд гарчиг солигдох pin-timeline, жигд скролл, хулганы курсор.',
@@ -671,11 +672,13 @@ const CONFIG = {
         desc:'Аяллын үйлчилгээний танилцуулга. Гурван үе шаттай багцын тайлбар, хөнгөн статик бүтэц.',
         tech:['HTML','CSS'], img:'assets/dokay-journeys.jpg', live:'https://ghostshdee.github.io/dokay-journeys-onepager/' },
       { title:'Гэрлэх ёслолын хурим', tag:'ЦАХИМ УРИЛГА', year:'2026',
-        desc:'Батбаяр & Алтанцэцэг · 09.19 · Шангри-Ла. Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
-        tech:['GSAP','Tailwind','RSVP'], img:'assets/urilga-hurim.jpg', live:'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/' },
+        desc:'Батбаяр & Алтанцэцэг · Шангри-Ла (жишээ). Тоолуур, зургийн цомог, хөтөлбөр, байршил, ирцийн хариулт.',
+        tech:['GSAP','Tailwind','RSVP'], img:'assets/urilga-hurim.jpg', live:'https://ghostshdee.github.io/urilga-hurim-batbayar-altantsetseg/',
+        try:{ n1:'Хүргэний нэр', n2:'Бэрийн нэр', date:true } },
       { title:'Сэвлэг үргээх ёслол', tag:'ЦАХИМ УРИЛГА', year:'2026',
         desc:'Монголхүү · Хүннү зоогийн газар. Одтой тэнгэрийн дэвсгэр, хөтөлбөр, зочдод хандсан санамж, ирцийн хариулт.',
-        tech:['GSAP','RSVP'], img:'assets/urilga-sevleg.jpg', live:'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/' }
+        tech:['GSAP','RSVP'], img:'assets/urilga-sevleg.jpg', live:'https://ghostshdee.github.io/urilga-sevleg-mongolhuu/',
+        try:{ n1:'Хүүхдийн нэр', n2:'Эцэг эхийн нэр', date:true } }
     ]
   },
 
@@ -1068,11 +1071,30 @@ function renderWork(){
             <div class="flex flex-wrap gap-2 mb-5">
               ${p.tech.map(t => `<span class="mn text-[10px] tracking-wider text-dim border border-line px-2.5 py-1">${esc(t)}</span>`).join('')}
             </div>
+            ${p.live && p.try ? `
+            <details class="mb-5 border border-line px-4 py-3">
+              <summary class="mn text-[11px] tracking-[.16em] text-bone cursor-pointer select-none">ӨӨРИЙН НЭРЭЭР ҮЗЭХ</summary>
+              <form class="try-form mt-2" data-live="${esc(p.live)}">
+                <input class="fld text-[15px]" name="n1" maxlength="24" required placeholder="${esc(p.try.n1)}" aria-label="${esc(p.try.n1)}">
+                ${p.try.n2 ? `<input class="fld text-[15px]" name="n2" maxlength="24" placeholder="${esc(p.try.n2)}" aria-label="${esc(p.try.n2)}">` : ''}
+                ${p.try.date ? `<input class="fld text-[15px]" name="d" type="date" aria-label="Огноо">` : ''}
+                <button type="submit" class="btn btn-primary mt-4 !py-3 !px-5">Үзэх ↗</button>
+              </form>
+            </details>` : ''}
             ${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener" aria-label="${esc(p.title)} — сайтыг шинэ цонхонд үзэх" class="mt-auto self-start mn text-[11px] tracking-[.16em] text-acid hover:underline underline-offset-4">ҮЗЭХ ↗</a>` : ''}
           </article>`; }).join('')}
       </div>
     </div>`;
 }
+
+/* «Өөрийн нэрээр үзэх» — бөглөсөн талбаруудаар урилгыг шинэ цонхонд нээнэ (#102) */
+document.addEventListener('submit', e => {
+  const f = e.target.closest('.try-form'); if (!f) return;
+  e.preventDefault();
+  const q = new URLSearchParams();
+  for (const [k, v] of new FormData(f)) if (String(v).trim()) q.set(k, String(v).trim());
+  window.open(f.dataset.live + '?' + q.toString(), '_blank', 'noopener');
+});
 
 /* ── 8 · FAQ ── */
 function renderFaq(){
