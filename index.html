@@ -39,6 +39,7 @@
      Roboto Flex → HERO-гийн аварга гарчиг (wdth тэнхлэгээр хэт шахна)
      Inter     → үндсэн текст
      JetBrains Mono → JSON блок, тоо, техник шошго -->
+<link rel="preload" as="image" href="assets/dolgoon-flag.webp" type="image/webp"><!-- CONFIG.hero.photo -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Flex:wdth,wght@62,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -156,6 +157,22 @@ body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
 .ph.hero-photo::before{
   content:''; position:absolute; inset:0; z-index:2;
   background:linear-gradient(90deg,#0A0A0A 0%,rgba(10,10,10,.55) 26%,transparent 58%);
+}
+/* CONFIG.hero.photo байвал хоосон градиентын оронд жинхэнэ зураг */
+.ph.hero-photo.has-photo{
+  background:var(--photo) center 18% / cover no-repeat, #0A0A0A;
+}
+
+/* ── ТУХАЙ — хөрөг ── */
+.about-photo{ position:relative; width:min(100%,300px) }
+.about-photo img{ border-radius:9999px; filter:grayscale(.15) contrast(1.04) }
+.about-photo::before{
+  content:''; position:absolute; inset:-10px; border-radius:9999px;
+  border:1px solid rgba(255,255,255,.12);
+}
+.about-photo .dot{
+  position:absolute; right:12%; bottom:9%; width:14px; height:14px; border-radius:9999px;
+  background:var(--acid); box-shadow:0 0 0 5px #0A0A0A;
 }
 .ph{ position:relative; background:linear-gradient(155deg,#171717,#0B0B0B 70%) }
 .ph::after{
@@ -524,6 +541,7 @@ const CONFIG = {
 
   /* ── 1 · HERO ─────────────────────────────────────────────────────── */
   hero: {
+    photo: 'assets/dolgoon-flag.webp',      /* баруун талын зураг (820×1093); хоосон бол градиент */
     hint: 'SCROLL TO SCRUB TIMELINE',
     words: [
       { text:'AI АВТОМАТЖУУЛАЛТ',
@@ -538,6 +556,9 @@ const CONFIG = {
   /* ── 2 · ТУХАЙ ───────────────────────────────────────────────────── */
   about: {
     label: '(01) ТУХАЙ',
+    photo:    'assets/dolgoon-portrait.webp',   /* 900×900; хоосон бол хөрөггүй */
+    photoAlt: 'Жаргалсайхан Дөлгөөн',
+    caption:  'ДӨЛГӨӨН · ДАРХАН',
     statement: 'Би Дарханд суугаад, {{давтагддаг ажлыг устгадаг}} системүүд бүтээдэг. Код, AI, дизайн гурвыг нэг дор — учир нь ажил дуусахад л үнэ цэнэ гардаг, тусад нь биш.',
     body: [
       'Ихэнх жижиг бизнес маркетингаа мэддэггүйдээ биш, цаг байхгүйдээ л орхидог. Тэр цагийг нь буцааж өгөх — миний хийдэг ажил тэр.',
@@ -780,6 +801,11 @@ function renderHero(){
   $('#heroHint').textContent   = h.hint;
   $('#heroTot').textContent    = String(h.words.length).padStart(2,'0');
   $('#heroSr').textContent = me.fullName + ' — ' + h.words.map(w => w.text).join(', ');
+  if (h.photo){
+    const ph = $('#heroPhoto');
+    ph.style.setProperty('--photo', `url("${encodeURI(h.photo)}")`);
+    ph.classList.add('has-photo');
+  }
 
   $('#heroStage').innerHTML = h.words.map((w,i) => `
     <div class="hero-word ${i===0 ? '' : 'opacity-0'}" data-word="${i}" aria-hidden="true">
@@ -839,13 +865,23 @@ function renderAbout(){
   $('#about').innerHTML = `
     <div class="max-w-shell mx-auto px-5 sm:px-8">
       <p class="label mb-10 sm:mb-14" data-anim>${esc(a.label)}</p>
-      <div class="max-w-3xl">
-        <p class="hd text-[1.75rem] sm:text-[2.7rem] leading-[1.18] text-bone mb-10" data-anim>
-          ${hl(a.statement)}
-        </p>
-        <div class="space-y-5">
-          ${a.body.map(p => `<p class="text-mid text-[15px] sm:text-[16.5px] leading-[1.8]" data-anim>${esc(p)}</p>`).join('')}
+      <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-20 xl:gap-28 lg:items-center">
+        <div class="max-w-3xl">
+          <p class="hd text-[1.75rem] sm:text-[2.7rem] leading-[1.18] text-bone mb-10" data-anim>
+            ${hl(a.statement)}
+          </p>
+          <div class="space-y-5">
+            ${a.body.map(p => `<p class="text-mid text-[15px] sm:text-[16.5px] leading-[1.8]" data-anim>${esc(p)}</p>`).join('')}
+          </div>
         </div>
+        ${a.photo ? `
+        <figure class="mt-14 lg:mt-0 mx-auto lg:mx-0" data-anim>
+          <div class="about-photo mx-auto">
+            <img src="${esc(a.photo)}" alt="${esc(a.photoAlt)}" width="900" height="900" loading="lazy" decoding="async" class="block w-full h-auto">
+            <span class="dot" aria-hidden="true"></span>
+          </div>
+          <figcaption class="label text-center mt-7">${esc(a.caption)}</figcaption>
+        </figure>` : ''}
       </div>
     </div>`;
 }
