@@ -293,9 +293,10 @@ body.cur-on #cur, body.cur-on #curDot{ opacity:1 }
   font-variation-settings:'wdth' 62,'wght' 900;
   font-weight:900; line-height:.72; letter-spacing:-.03em;
   font-size:clamp(5.5rem,25.5vw,21rem);
-  /* хаан 10-11: «зүүнээс баруун, 2-р хувилбар» — DO ногоон → KAY цагаан, логоны DO|KAY өнгө
-     (өмнө нь саарал #4A4A4A→#0A0A0A, дээрээс доош) */
-  background:linear-gradient(90deg,#C6F24E 0%,#C6F24E 30%,#EDEAE4 62%,#EDEAE4 100%);
+  /* хаан 10-11: «тодруулсан 3» — дээд үзүүр цагаан, дунд нь харанхуй, доороос тоононы ногоон гэрэл.
+     Доод ~28% нь footer-т далд (translate 22% + GSAP 6%) тул ногоон 72%-д бүрэн гарна.
+     (өмнө нь: саарал #4A4A4A→#0A0A0A; түр зуур зүүнээс баруун ногоон→цагаан) */
+  background:linear-gradient(180deg,#E6E3DD 0%,#7A7A7A 13%,#262626 28%,#5E7A1C 52%,#C6F24E 72%,#C6F24E 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; -webkit-text-fill-color:transparent;
   user-select:none;
